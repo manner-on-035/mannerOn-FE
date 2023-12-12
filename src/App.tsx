@@ -1,12 +1,12 @@
-import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme, GlobalStyle } from './styles';
+import { Router } from '@shared/index';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <h1>매너장착</h1>
+      <Router />
     </ThemeProvider>
   );
 }
