@@ -8,8 +8,13 @@ export interface InputProps {
   borderRadius: number;
   placeholder?: string;
   backGroundColor?: string;
-  borderColorOnFocus?: boolean;
+  borderColorOnFocus?: string;
+  value?: string;
+  maxLength?: number;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }
+
 const Input: React.FC<InputProps> = ({
   width,
   height,
@@ -19,6 +24,10 @@ const Input: React.FC<InputProps> = ({
   backGroundColor,
   borderColorOnFocus,
   fontSize = 18,
+  value,
+  maxLength,
+  onChange,
+  onFocus,
 }) => {
   return (
     <S.Input
@@ -30,6 +39,10 @@ const Input: React.FC<InputProps> = ({
       $borderRadius={borderRadius}
       $backGroundColor={backGroundColor}
       $borderColorOnFocus={borderColorOnFocus}
+      value={value}
+      maxLength={maxLength}
+      onChange={onChange}
+      onFocus={onFocus}
     />
   );
 };

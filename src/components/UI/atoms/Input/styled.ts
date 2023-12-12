@@ -6,7 +6,7 @@ interface InputProps {
   $isError?: boolean;
   $borderRadius: number;
   $backGroundColor?: string;
-  $borderColorOnFocus?: boolean;
+  $borderColorOnFocus?: string;
 }
 export const Input = styled.input<InputProps>`
   width: ${({ width }) => width}px;
