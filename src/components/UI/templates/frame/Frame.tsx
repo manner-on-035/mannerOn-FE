@@ -6,9 +6,10 @@ const Frame = () => {
   // const location = useLocation();
   // const isNavVisible = location.pathname === '';
 
+const Frame = () => {
   return (
     <S.Container>
-      <S.Main>{/* {isNavVisible } */}</S.Main>
+      <S.Main></S.Main>
     </S.Container>
   );
 };
