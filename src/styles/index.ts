@@ -8,6 +8,7 @@ export {
   flexDAC,
   flexSBC,
   flexSBS,
+  flexDSB,
   flexJustifyCenter,
   flexFlexStartCenter,
   flexAlignItemsCenter,
