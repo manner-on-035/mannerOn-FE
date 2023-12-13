@@ -13,8 +13,7 @@ export const Main = styled.div`
   flex-direction: column;
   width: 360px;
   height: 100vh;
-  overflow: scroll;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 8px;
-  overflow: scroll;
+
 `;
