@@ -6,9 +6,7 @@ import * as S from "./styled"
 const SplashPage = () => {
     console.log("splash")
     return (
-     
         <S.Splash>
-        
             <S.Title>답장이 고민될 때 매너ON</S.Title>
             <div>logo</div>
         </S.Splash>
