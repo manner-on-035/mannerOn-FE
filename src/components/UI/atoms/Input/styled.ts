@@ -11,17 +11,21 @@ interface InputProps {
 export const Input = styled.input<InputProps>`
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-  font-size: ${({ $fontSize }) => $fontSize}px;
+  padding-left: 16px;
+  border: 1px solid;
+  border-color: ${({theme}) => theme.colors.gray30};
   border-radius: ${({ $borderRadius }) => $borderRadius}px;
   background-color: ${({ $backGroundColor }) => ''}};
   &::placeholder {
+    ${({theme}) => theme.fonts.body2};
+    color: ${({theme}) => theme.colors.gray50};
   }
   &:focus {
-    border: ${({ $isError, $borderColorOnFocus }) => {
+    border: ${({ $isError, $borderColorOnFocus, theme }) => {
       if ($isError) {
-        return '';
+        return theme.colors.negative;
       } else if ($borderColorOnFocus) {
-        return '';
+        return theme.colors.main;
       }
     }};
   }
