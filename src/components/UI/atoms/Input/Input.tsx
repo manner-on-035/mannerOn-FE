@@ -1,11 +1,11 @@
 import React from 'react';
 import * as S from './styled';
 export interface InputProps {
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   fontSize?: number;
   isError?: boolean;
-  borderRadius: number;
+  borderRadius?: number;
   placeholder?: string;
   backGroundColor?: string;
   borderColorOnFocus?: string;
@@ -13,17 +13,18 @@ export interface InputProps {
   maxLength?: number;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
+  children?: React.ReactNode;
 }
 
 const Input: React.FC<InputProps> = ({
-  width,
-  height,
-  isError,
+  width = 328,
+  height = 48,
+  isError = false,
   placeholder,
-  borderRadius,
-  backGroundColor,
-  borderColorOnFocus,
-  fontSize = 18,
+  borderRadius = 4,
+  backGroundColor = "white",
+  borderColorOnFocus = "gray",
+  fontSize = 14,
   value,
   maxLength,
   onChange,
@@ -34,15 +35,16 @@ const Input: React.FC<InputProps> = ({
       width={width}
       height={height}
       $isError={isError}
-      $fontSize={fontSize}
       placeholder={placeholder}
       $borderRadius={borderRadius}
       $backGroundColor={backGroundColor}
       $borderColorOnFocus={borderColorOnFocus}
       value={value}
       maxLength={maxLength}
+      $fontSize={0}
       onChange={onChange}
       onFocus={onFocus}
+
     />
   );
 };
