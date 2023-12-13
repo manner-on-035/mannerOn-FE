@@ -5,10 +5,10 @@ import BlackMediumLogo from '@assets/logo/BlackMediumLogo.svg'
 const LoginPage = () => {
     console.log("login")
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        // handle input change logic here
+     
     };
     const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        // handle button click logic here
+       
     };
     return (
      
@@ -21,22 +21,21 @@ const LoginPage = () => {
                 <S.LoginSubTitle>회원 서비스 이용을 위해 로그인 해주세요.</S.LoginSubTitle>
             </S.WrapperTop>
             <S.WrapperCenter>
-            <Input 
-            placeholder={"아이디 (이메일)"}
-            maxLength={30}
-            onChange={handleInputChange}
-            onFocus={handleInputChange}
-            />
-            <Input 
-            placeholder={"비밀번호 (최소 6자리 이상, 대문자, 특수문자 포함)"}
-            maxLength={20}
-            onChange={handleInputChange}
-            onFocus={handleInputChange}
-            />
-            <Button backGroundColor={"white"} onClick={handleButtonClick}>
-                {"로그인"}
-      
-            </Button>
+                <Input 
+                placeholder={"아이디 (이메일)"}
+                maxLength={30}
+                onChange={handleInputChange}
+                onFocus={handleInputChange}
+                />
+                <Input 
+                placeholder={"비밀번호 (최소 6자리 이상, 대문자, 특수문자 포함)"}
+                maxLength={20}
+                onChange={handleInputChange}
+                onFocus={handleInputChange}
+                />
+                <Button $backGroundColor={"white"} onClick={handleButtonClick}>
+                    {"로그인"}
+                </Button>
       
 
             </S.WrapperCenter>  

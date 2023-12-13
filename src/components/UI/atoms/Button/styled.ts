@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface ButtonProps {
-  color: string;
+  color?: string;
   width?: number;
   height: number;
   $fontSize: number;
@@ -33,11 +33,14 @@ export const Button = styled.button<ButtonProps>`
     }
   }
 };
-  background-color: ${({ $backGroundColor, disabled }) => {
+  background-color: ${({ theme, $backGroundColor, disabled }) => {
     if (disabled) {
       return "gray";
-    } 
-    return $backGroundColor; 
+    } else if($backGroundColor === "black"){
+      return theme.colors.primary;
+    }else if($backGroundColor = "white"){
+      return theme.colors.white;
+    }
   }};
   }};
   border: ${({ theme, $backGroundColor, disabled }) => {

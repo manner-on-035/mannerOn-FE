@@ -10,18 +10,18 @@ export interface ButtonProps {
   disabled?: boolean;
   children: React.ReactElement | string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  backGroundColor?: string;
+  $backGroundColor?: string;
 
 }
 
 const Button: React.FC<ButtonProps> = ({
-  color = "defaultColor",
+  color = "white",
   width = 328,
   height = 52,
   disabled = false,
   borderRadius = 4,
   fontSize = 16,
-  backGroundColor = "defaultColor",
+  $backGroundColor,
   children,
   onClick,
 
@@ -34,7 +34,7 @@ const Button: React.FC<ButtonProps> = ({
     disabled={disabled}
     $fontSize={fontSize}
     $borderRadius={borderRadius}
-    $backGroundColor={backGroundColor}
+    $backGroundColor={$backGroundColor}
       >
       {children}
     </S.Button>
