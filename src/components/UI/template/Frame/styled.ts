@@ -11,7 +11,7 @@ export const Container = styled.div`
 export const Main = styled.div`
   display: flex;
   flex-direction: column;
-  width: 375px;
+  width: 360px;
   height: 100vh;
   overflow: scroll;
   background-color: white;

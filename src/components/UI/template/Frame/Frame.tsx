@@ -1,15 +1,16 @@
 import React from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import * as S from './styled';
-//
 
-const Frame = () => {
+const Frame: React.FC = () => {
   // const location = useLocation();
   // const isNavVisible = location.pathname === '';
 
-const Frame = () => {
   return (
     <S.Container>
-      <S.Main></S.Main>
+      <S.Main>
+        <Outlet/>
+      </S.Main>
     </S.Container>
   );
 };
