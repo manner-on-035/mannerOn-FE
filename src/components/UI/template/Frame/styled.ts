@@ -15,5 +15,7 @@ export const Main = styled.div`
   height: 100vh;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 8px;
+  padding: 0 16px 0 16px;
+
 
 `;
