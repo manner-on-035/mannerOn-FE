@@ -1,4 +1,3 @@
-
 const colors = {
   white: '#FFFFFF',
   gray20: '#F6F6F6',
@@ -37,9 +36,9 @@ const fonts = {
   body1_medium: FONT({ weight: 500, size: 16, lineHeight: 22}),
   body2: FONT({ weight: 400, size: 14, lineHeight: 18}),
   body2_medium: FONT({ weight: 500, size: 14, lineHeight: 18 }),
-  body2_bold: FONT({ weight: 700, size: 14, lineHeight: 18}),
-  CTA_small: FONT({ weight: 400, size: 12, lineHeight: 12}),
-  CTA_medium: FONT({ weight: 700, size: 16, lineHeight: 22}),
+  body2_bold: FONT({ weight: 700, size: 14, lineHeight: 18 }),
+  CTA_small: FONT({ weight: 400, size: 12, lineHeight: 12 }),
+  CTA_medium: FONT({ weight: 700, size: 16, lineHeight: 22 }),
 } as const;
 
 const theme = {
