@@ -29,12 +29,12 @@ function FONT({ weight, size, lineHeight, notoSans }: Font): string {
 
 const fonts = {
   h1: FONT({ weight: 700, size: 30, lineHeight: 42 }),
-  h2: FONT({ weight: 700, size: 24, lineHeight: 32}),
-  h3: FONT({ weight: 700, size: 20, lineHeight: 28}),
-  h4: FONT({ weight: 700, size: 18, lineHeight: 24}),
-  body1: FONT({ weight: 400, size: 16, lineHeight: 22}),
-  body1_medium: FONT({ weight: 500, size: 16, lineHeight: 22}),
-  body2: FONT({ weight: 400, size: 14, lineHeight: 18}),
+  h2: FONT({ weight: 700, size: 24, lineHeight: 34 }),
+  h3: FONT({ weight: 700, size: 20, lineHeight: 28 }),
+  h4: FONT({ weight: 700, size: 18, lineHeight: 24 }),
+  body1: FONT({ weight: 400, size: 16, lineHeight: 22 }),
+  body1_medium: FONT({ weight: 500, size: 16, lineHeight: 22 }),
+  body2: FONT({ weight: 400, size: 14, lineHeight: 18 }),
   body2_medium: FONT({ weight: 500, size: 14, lineHeight: 18 }),
   body2_bold: FONT({ weight: 700, size: 14, lineHeight: 18 }),
   CTA_small: FONT({ weight: 400, size: 12, lineHeight: 12 }),
