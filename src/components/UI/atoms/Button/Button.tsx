@@ -10,7 +10,7 @@ export interface ButtonProps {
   disabled?: boolean;
   children: React.ReactElement | string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  $backGroundColor?: string;
+  $backGroundColor: string;
 
 }
 

@@ -17,7 +17,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Frame />}>
-          <Route path="" element={<LoginPage />} />
+
           <Route path="" element={<SplashPage />} />
           <Route path="signin-step" element={<SignInStepPage />} />
         </Route>
@@ -27,3 +27,4 @@ const Router = () => {
 };
 
 export default Router;
+
