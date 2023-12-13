@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-//import { SplashPage } from '@pages/index';
-import { SplashPage } from '../pages/index';
+import { SplashPage, SignInStepPage } from '@pages/index';
 import { Frame } from '@components/UI/template';
 
 const Router = () => {
@@ -16,9 +15,10 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-       <Route path="/" element={<Frame />}>
-        <Route path="" element={<SplashPage />}/>
-       </Route>
+        <Route path="/" element={<Frame />}>
+          <Route path="" element={<SplashPage />} />
+          <Route path="signin-step" element={<SignInStepPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
