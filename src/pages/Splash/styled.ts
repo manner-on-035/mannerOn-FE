@@ -1,18 +1,30 @@
 import styled from 'styled-components';
 
-
 // @assets/logo/WhiteBigLogo.svg
 export const Splash = styled.section` 
-   background-color: black;
+   background-color:  ${({theme}) => theme.colors.primary};;
+`;
+
+export const Wrapper = styled.div` 
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+flex-direction:column;
 `;
 
 export const Title = styled.p`
     ${({theme}) => theme.fonts.body2_bold};
     color: ${({theme}) => theme.colors.white};
     line-height:14px;
+    margin-bottom: 12px;
 
 `;
+export const Highlight = styled.span`
+    color: ${({theme}) => theme.colors.secondary};
 
-export const WhiteBigLogo = styled.div`
-  
+
+`;
+export const ImgWrapper = styled.div`
+  align-items: center;
 `;
