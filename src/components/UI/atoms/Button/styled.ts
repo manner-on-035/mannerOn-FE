@@ -22,36 +22,52 @@ export const Button = styled.button<ButtonProps>`
   border-radius: ${({ $borderRadius }) => $borderRadius}px;
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   background-color: ${({ theme, $backGroundColor, disabled }) => {
-    if (disabled) {
-      return "yellow";
-    } else if($backGroundColor === "black"){
+    if ($backGroundColor === 'black' && disabled) {
+      return theme.colors.darkgrey
+    } else if ($backGroundColor === 'white' && disabled) {
+      return theme.colors.gray20
+    } else if($backGroundColor === "black" && !disabled){
       return theme.colors.primary;
-    }else if($backGroundColor = "white"){
+    }else if($backGroundColor === "white" && !disabled){
       return theme.colors.white;
     }
   }};
  
   color: 
   ${({ theme, $backGroundColor, disabled }) => {
-    if (disabled) {
+    if ($backGroundColor === 'black' && disabled) {
+      return theme.colors.gray40
+    } else if ($backGroundColor === 'white' && disabled) {
       return theme.colors.gray30
-    } else if ($backGroundColor === 'white') {
+    }  
+    else if ($backGroundColor === 'white' && !disabled) {
       return theme.colors.darkgrey;
-    }else if ($backGroundColor === 'black') {
+    }else if ($backGroundColor === 'black' && !disabled) {
       return theme.colors.white;
     }
     }
   }
 
   border: ${({ theme, $backGroundColor, disabled }) => {
-    if ($backGroundColor === "black" && !disabled) {
-      return 'black';
-    } else if ($backGroundColor === "white" && !disabled) {
+    if ($backGroundColor === "white" && !disabled) {
       return theme.colors.darkgrey;
+    } else if (disabled){
+      return theme.colors.gray30;
+    }else{
+      return "none";
     }
   }};
 
   &:hover {
+    background-color: ${({ theme, $backGroundColor, disabled }) => {
+    if ($backGroundColor === "black" && !disabled) {
+      return theme.colors.darkgrey;
+    } else if ($backGroundColor === "white" && !disabled) {
+      return theme.colors.gray20;
+    }
+
+  }};
+   
   }
   &:active {
   }
