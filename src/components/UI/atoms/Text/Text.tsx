@@ -2,27 +2,40 @@ import React from 'react';
 import * as S from './styled';
 
 export interface TextProps {
-  width: number | 'auto';
-  height: number | 'auto';
-  color: string;
+  color?: string;
+  margin?: string;
   display?: string;
-  font: string;
-  marginTop?: number;
-  marginLeft?: number;
+  padding?: string;
   textAlign?: string;
+  fontSize?: number;
+  fontWeight?: number;
+  width?: number | 'auto';
+  height?: number | 'auto';
   children?: React.ReactNode;
 }
 
-const Text: React.FC<TextProps> = ({ width, height, color, display, font, marginTop, marginLeft, children, textAlign }) => {
+const Text: React.FC<TextProps> = ({
+  display,
+  margin,
+  padding,
+  children,
+  textAlign,
+  fontSize = 14,
+  fontWeight = 400,
+  width = 'auto',
+  height = 'auto',
+  color = 'darkgray',
+}) => {
   const style = {
+    $color: color,
     $width: width,
     $height: height,
-    $color: color,
+    $margin: margin,
     $display: display,
-    $font: font,
-    $marginTo: marginTop,
-    $marginLeft: marginLeft,
+    $padding: padding,
     $textAlign: textAlign,
+    $fontSize: fontSize,
+    $fontWeight: fontWeight,
   };
   return <S.Text {...style}>{children}</S.Text>;
 };

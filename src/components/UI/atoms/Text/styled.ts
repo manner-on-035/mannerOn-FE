@@ -1,30 +1,31 @@
 import styled from 'styled-components';
 
 interface TextProps {
-  $font: string;
   $color: string;
+  $margin?: string;
+  $padding?: string;
   $display?: string;
-  $marginTop?: number;
-  $marginLeft?: number;
   $textAlign?: string;
+  $fontSize?: number;
+  $fontWeight?: number;
   $width: number | 'auto';
   $height: number | 'auto';
 }
 
 export const Text = styled.p<TextProps>`
+  display: inline;
   width: ${({ $width }) => ($width === 'auto' ? 'auto' : `${$width}px`)};
   height: ${({ $height }) => {
-    if ($height === 'auto') {
-      return 'auto';
-    } else {
-      return `${$height}px`;
-    }
+    if ($height === 'auto') return 'auto';
+    else return `${$height}px`;
   }};
+
   word-break: break-all;
-  color: ${({ $color }) => $color};
-  margin-top: ${({ $marginTop }) => $marginTop}px;
-  margin-left: ${({ $marginLeft }) => $marginLeft}px;
-  text-align: ${({ $textAlign }) => {
-    return $textAlign;
-  }};
+  font-size: ${({ $fontSize }) => $fontSize}px;
+  font-weight: ${({ $fontWeight }) => $fontWeight};
+  color: ${({ theme, $color }) => theme.colors[`${$color}`]};
+  text-align: ${({ $textAlign }) => $textAlign};
+
+  padding: ${({ $padding }) => $padding};
+  margin: ${({ $margin }) => $margin};
 `;
