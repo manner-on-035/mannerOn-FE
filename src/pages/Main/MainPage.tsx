@@ -5,6 +5,9 @@ import BlackSmallLogo from '@assets/logo/BlackSmallLogo.svg'
 const MainPage = () => {
 
     return{
+        <>
+          <ChatInput/>
+        </>
     }
 }
 
