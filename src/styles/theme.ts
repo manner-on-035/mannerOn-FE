@@ -5,7 +5,7 @@ const colors = {
   gray30: '#E3E3E3',
   gray40: '#C7C8C8',
   gray50: '#828382',
-  gray60: '#212221',
+  darkgrey: '#212221',
   primary: '#000000',
   secondary: '#FF5624',
   negative: '#FF4545',
@@ -30,7 +30,7 @@ function FONT({ weight, size, lineHeight, notoSans }: Font): string {
 
 const fonts = {
   h1: FONT({ weight: 700, size: 30, lineHeight: 42 }),
-  h2: FONT({ weight: 700, size: 24, lineHeight: 34}),
+  h2: FONT({ weight: 700, size: 24, lineHeight: 32}),
   h3: FONT({ weight: 700, size: 20, lineHeight: 28}),
   h4: FONT({ weight: 700, size: 18, lineHeight: 24}),
   body1: FONT({ weight: 400, size: 16, lineHeight: 22}),
