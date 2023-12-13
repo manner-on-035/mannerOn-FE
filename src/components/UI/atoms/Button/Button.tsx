@@ -2,56 +2,40 @@ import React from 'react';
 import * as S from './styled';
 
 export interface ButtonProps {
-  color: string;
+  color?: string;
   width?: number;
-  height: number;
+  height?: number;
   fontSize?: number;
-  marginTop?: number;
-  marginLeft?: number;
-  marginBottom?: number;
-  fontWeight?: number;
-  borderRadius: number;
-  backGroundColor?: string;
-  paddingTopBottom?: number;
-  paddingLeftRight?: number;
+  borderRadius?: number;
   disabled?: boolean;
   children: React.ReactElement | string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  backGroundColor?: string;
+
 }
 
 const Button: React.FC<ButtonProps> = ({
-  color,
-  width,
-  height,
-  disabled,
-  marginTop,
-  marginLeft,
-  fontWeight,
-  marginBottom,
-  borderRadius,
-  backGroundColor,
-  paddingTopBottom,
-  paddingLeftRight,
+  color = "defaultColor",
+  width = 328,
+  height = 52,
+  disabled = false,
+  borderRadius = 4,
   fontSize = 16,
+  backGroundColor = "defaultColor",
   children,
   onClick,
+
 }) => {
   return (
     <S.Button
-      color={color}
-      width={width}
-      height={height}
-      disabled={disabled}
-      $fontSize={fontSize}
-      $marginTop={marginTop}
-      $fontWeight={fontWeight}
-      $marginLeft={marginLeft}
-      $borderRadius={borderRadius}
-      $marginBottom={marginBottom}
-      $backGroundColor={backGroundColor}
-      $paddingTopBottom={paddingTopBottom}
-      $paddingLeftRight={paddingLeftRight}
-      onClick={onClick}>
+    color={color}
+    width={width}
+    height={height}
+    disabled={disabled}
+    $fontSize={fontSize}
+    $borderRadius={borderRadius}
+    $backGroundColor={backGroundColor}
+      >
       {children}
     </S.Button>
   );

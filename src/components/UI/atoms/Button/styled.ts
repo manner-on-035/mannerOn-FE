@@ -11,8 +11,6 @@ interface ButtonProps {
   $marginLeft?: number;
   $marginBottom?: number;
   $backGroundColor?: string;
-  $paddingTopBottom?: number;
-  $paddingLeftRight?: number;
   disabled?: boolean;
 }
 
@@ -20,40 +18,33 @@ export const Button = styled.button<ButtonProps>`
   font-style: normal;
   width: ${({ width }) => width && `${width}px`};
   height: ${({ height }) => height}px;
-  font-weight: ${({ $fontWeight }) => $fontWeight};
+  ${({theme}) => theme.fonts.CTA_medium};
   border-radius: ${({ $borderRadius }) => $borderRadius}px;
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
-  font-size: ${({ $fontSize }) => $fontSize}px;
-  padding: ${({ $paddingTopBottom, $paddingLeftRight }) =>
-    $paddingTopBottom && $paddingLeftRight
-      ? `${$paddingTopBottom}px ${$paddingLeftRight}px`
-      : $paddingTopBottom
-        ? `${$paddingTopBottom}px 0`
-        : `0 ${$paddingLeftRight}px`};
-  margin-top: ${({ $marginTop }) => $marginTop}px;
-  margin-left: ${({ $marginLeft }) => $marginLeft}px;
-  margin-bottom: ${({ $marginBottom }) => $marginBottom}px;
-  color: ${({ color, disabled }) => {
+  color: 
+  ${({ theme, $backGroundColor, disabled }) => {
     if (disabled) {
-    } else {
-      if (color === '') {
-        return '';
-      }
+      return theme.colors.gray30
+    } else if ($backGroundColor === 'white') {
+      return theme.colors.darkgrey;
+    }else if ($backGroundColor === 'black') {
+      return theme.colors.white;
     }
-  }};
+    }
+  }
+};
   background-color: ${({ $backGroundColor, disabled }) => {
     if (disabled) {
-    } else {
-      if ($backGroundColor) {
-        return $backGroundColor;
-      }
-    }
+      return "gray";
+    } 
+    return $backGroundColor; 
   }};
-  border: ${({ color, disabled }) => {
-    if (color && !disabled) {
-      return '';
-    } else if (color === '') {
-      return '';
+  }};
+  border: ${({ theme, $backGroundColor, disabled }) => {
+    if ($backGroundColor === "black" && !disabled) {
+      return 'black';
+    } else if ($backGroundColor === "white" && !disabled) {
+      return theme.colors.darkgrey;
     }
   }};
 
