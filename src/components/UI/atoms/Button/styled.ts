@@ -26,7 +26,7 @@ export const Button = styled.button<ButtonProps>`
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   background-color: ${({ theme, $backGroundColor, disabled }) => {
     if ($backGroundColor === 'black' && disabled) {
-      return theme.colors.darkgrey;
+      return theme.colors.darkgray;
     } else if ($backGroundColor === 'white' && disabled) {
       return theme.colors.gray20;
     } else if ($backGroundColor === 'black' && !disabled) {
@@ -42,7 +42,7 @@ export const Button = styled.button<ButtonProps>`
     } else if ($backGroundColor === 'white' && disabled) {
       return theme.colors.gray30;
     } else if ($backGroundColor === 'white' && !disabled) {
-      return theme.colors.darkgrey;
+      return theme.colors.darkgray;
     } else if ($backGroundColor === 'black' && !disabled) {
       return theme.colors.white;
     }
@@ -50,9 +50,9 @@ export const Button = styled.button<ButtonProps>`
 
   border: ${({ theme, $backGroundColor, disabled }) => {
     if ($backGroundColor === 'white' && !disabled) {
-      return theme.colors.darkgrey;
+      return `1px solid ${theme.colors.darkgray}`;
     } else if (disabled) {
-      return theme.colors.gray30;
+      return `1px solid ${theme.colors.gray30}`;
     } else {
       return 'none';
     }
@@ -61,7 +61,7 @@ export const Button = styled.button<ButtonProps>`
   &:hover {
     background-color: ${({ theme, $backGroundColor, disabled }) => {
       if ($backGroundColor === 'black' && !disabled) {
-        return theme.colors.darkgrey;
+        return theme.colors.darkgray;
       } else if ($backGroundColor === 'white' && !disabled) {
         return theme.colors.gray20;
       }
