@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 //import { SplashPage } from '@pages/index';
 import { SplashPage } from '../pages/index';
 import { Frame } from '@components/UI/template';
+import LoginPage from '@pages/Login/LoginPage';
 
 const Router = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +18,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
        <Route path="/" element={<Frame />}>
-        <Route path="" element={<SplashPage />}/>
+        <Route path="" element={<LoginPage />}/>
        </Route>
       </Routes>
     </BrowserRouter>
