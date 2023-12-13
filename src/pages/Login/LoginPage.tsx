@@ -33,7 +33,7 @@ const LoginPage = () => {
                 onChange={handleInputChange}
                 onFocus={handleInputChange}
                 />
-                <Button $backGroundColor={"white"} onClick={handleButtonClick}>
+                <Button $backGroundColor={"black"} onClick={handleButtonClick}>
                     {"로그인"}
                 </Button>
       
