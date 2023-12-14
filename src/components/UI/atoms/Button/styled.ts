@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface ButtonProps {
-  color?: string;
+  $color?: string;
   width?: number;
   height: number;
   $margin?: string;
@@ -9,9 +9,7 @@ interface ButtonProps {
   $marginTop?: number;
   $fontWeight?: number;
   $borderRadius: number;
-  $marginLeft?: number;
-  $marginBottom?: number;
-  $backGroundColor: string;
+  $backgroundColor: string;
   disabled?: boolean;
 }
 
@@ -24,32 +22,12 @@ export const Button = styled.button<ButtonProps>`
   ${({ theme }) => theme.fonts.CTA_medium};
   border-radius: ${({ $borderRadius }) => $borderRadius}px;
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
-  background-color: ${({ theme, $backGroundColor, disabled }) => {
-    if ($backGroundColor === 'black' && disabled) {
-      return theme.colors.darkgray;
-    } else if ($backGroundColor === 'white' && disabled) {
-      return theme.colors.gray20;
-    } else if ($backGroundColor === 'black' && !disabled) {
-      return theme.colors.primary;
-    } else if ($backGroundColor === 'white' && !disabled) {
-      return theme.colors.white;
-    }
-  }};
 
-  color: ${({ theme, $backGroundColor, disabled }) => {
-    if ($backGroundColor === 'black' && disabled) {
-      return theme.colors.gray40;
-    } else if ($backGroundColor === 'white' && disabled) {
-      return theme.colors.gray30;
-    } else if ($backGroundColor === 'white' && !disabled) {
-      return theme.colors.darkgray;
-    } else if ($backGroundColor === 'black' && !disabled) {
-      return theme.colors.white;
-    }
-  }};
+  color: ${({ theme, $color }) => theme.colors[`${$color}`]};
+  background-color: ${({ theme, $backgroundColor }) => theme.colors[`${$backgroundColor}`]};
 
-  border: ${({ theme, $backGroundColor, disabled }) => {
-    if ($backGroundColor === 'white' && !disabled) {
+  border: ${({ theme, $backgroundColor, disabled }) => {
+    if ($backgroundColor === 'white' && !disabled) {
       return `1px solid ${theme.colors.darkgray}`;
     } else if (disabled) {
       return `1px solid ${theme.colors.gray30}`;
@@ -59,10 +37,10 @@ export const Button = styled.button<ButtonProps>`
   }};
 
   &:hover {
-    background-color: ${({ theme, $backGroundColor, disabled }) => {
-      if ($backGroundColor === 'black' && !disabled) {
+    background-color: ${({ theme, $backgroundColor, disabled }) => {
+      if ($backgroundColor === 'primary' && !disabled) {
         return theme.colors.darkgray;
-      } else if ($backGroundColor === 'white' && !disabled) {
+      } else if ($backgroundColor === 'white' && !disabled) {
         return theme.colors.gray20;
       }
     }};

@@ -9,7 +9,7 @@ export interface ButtonProps {
   fontSize?: number;
   disabled?: boolean;
   borderRadius?: number;
-  backGroundColor: string;
+  backgroundColor: string;
   children: React.ReactElement | string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -22,20 +22,21 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   borderRadius = 4,
   fontSize = 16,
-  backGroundColor,
+  backgroundColor,
   children,
   onClick,
 }) => {
   return (
     <S.Button
-      color={color}
+      $color={color}
       width={width}
       $margin={margin}
       height={height}
       disabled={disabled}
       $fontSize={fontSize}
       $borderRadius={borderRadius}
-      $backGroundColor={backGroundColor}>
+      $backgroundColor={backgroundColor}
+      onClick={onClick}>
       {children}
     </S.Button>
   );
