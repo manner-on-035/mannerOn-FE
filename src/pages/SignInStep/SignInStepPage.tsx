@@ -1,15 +1,29 @@
-import { Box, SvgWrapper, Text, Input, Button } from '@UI/atoms';
+import React, { useState } from 'react';
 import { Container } from '@UI/template';
+import { Box, SvgWrapper, Button } from '@UI/atoms';
+import { SignInNickName, SignInGender, SignInJob, SignInAge } from '@components/SignInStep';
 import backIcon from '@assets/icon/backIcon.svg';
 
-const SignInStepPage = () => {
-  const handleInputChange = (e: any) => {};
-  const handleButtonClick = (e: any) => {};
+const SignInStepPage: React.FC = () => {
+  const [currentStep, setCurrentStep] = useState(1);
+  // TODO: 객체화
+  const [currentGender, setCurrentGender] = useState<number>(1);
+  const [currentJob, setCurrentJob] = useState<number>(0);
+  const [currentAge, setCurrentAge] = useState<number>(1);
+
+  const handleNicknameChange = () => {};
+
+  const stepList = [
+    <SignInNickName key={0} onChange={handleNicknameChange} />,
+    <SignInGender key={1} current={currentGender} setCurrent={setCurrentGender} />,
+    <SignInJob key={2} current={currentJob} setCurrent={setCurrentJob} />,
+    <SignInAge key={3} current={currentAge} setCurrent={setCurrentAge} />,
+  ];
 
   return (
     <Box height={'100vh'}>
       <Box height={50} display={'flexAlignItemsCenter'}>
-        <SvgWrapper svg={backIcon} onClick={() => {}} style={{ cursor: 'pointer' }} />
+        <SvgWrapper svg={backIcon} onClick={() => setCurrentStep(currentStep - 1)} style={{ cursor: 'pointer' }} />
       </Box>
       <Container>
         <Box>
@@ -22,29 +36,15 @@ const SignInStepPage = () => {
                 color={'white'}
                 borderRadius={50}
                 display={'flexCC'}
-                backgroundColor={'secondary'}
+                backgroundColor={currentStep === item ? 'secondary' : 'gray30'}
                 fontWeight={600}>
                 {item}
               </Box>
             ))}
           </Box>
-          <Box fontWeight={500}>
-            <Box fontSize={24} fontWeight={700}>
-              매너ON에서 사용할
-              <br />
-              <Text fontSize={24} fontWeight={700} color={'secondary'}>
-                닉네임
-              </Text>
-              을 입력해 주세요
-            </Box>
-            <Box fontSize={16} color={'gray50'} margin={'8px 0 40px 0'}>
-              닉네임은 공백없이 10자 이하, <br />
-              특수문자는 제외해주세요.
-            </Box>
-            <Input placeholder={'닉네임 입력'} maxLength={30} onChange={handleInputChange} />
-          </Box>
+          {stepList.filter((_, i) => i + 1 === currentStep)}
         </Box>
-        <Button backGroundColor={'black'} margin={'0 0 40px 0'} onClick={handleButtonClick}>
+        <Button backgroundColor={'primary'} margin={'0 0 40px 0'} onClick={() => setCurrentStep(currentStep + 1)}>
           다음
         </Button>
       </Container>
