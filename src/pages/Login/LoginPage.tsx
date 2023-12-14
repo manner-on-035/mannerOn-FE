@@ -27,7 +27,7 @@ const LoginPage = () => {
           onChange={handleInputChange}
           onFocus={handleInputChange}
         />
-        <Button backGroundColor={'black'} onClick={handleButtonClick}>
+        <Button backgroundColor={'primary'} onClick={handleButtonClick}>
           {'로그인'}
         </Button>
       </S.WrapperCenter>
