@@ -5,17 +5,20 @@ import {
   flexSBC,
   flexDAC,
   flexDJC,
+  flexCW,
   flexJustifyCenter,
   flexFlexStartCenter,
   flexAlignItemsCenter,
 } from '@styles/index';
 
 interface BoxProps {
+  $gap?: number;
   $color: string;
+  $margin?: string;
   $padding?: string;
   $display?: string;
-  $marginTop?: number;
-  $marginLeft?: number;
+  $fontSize: number;
+  $fontWeight: number;
   $textAlign?: string;
   $borderRadius: number;
   $backgroundColor: string;
@@ -36,13 +39,12 @@ export const Box = styled.div<BoxProps>`
   border-radius: ${({ $borderRadius }) => $borderRadius}px;
 
   padding: ${({ $padding }) => $padding};
-  margin-top: ${({ $marginTop }) => $marginTop}px;
-  margin-left: ${({ $marginLeft }) => $marginLeft}px;
+  margin: ${({ $margin }) => $margin};
 
   word-break: break-all;
-  text-align: ${({ $textAlign }) => {
-    return $textAlign;
-  }};
+  text-align: ${({ $textAlign }) => $textAlign};
+  font-size: ${({ $fontSize }) => $fontSize}px;
+  font-weight: ${({ $fontWeight }) => $fontWeight};
 
   ${({ $display }) => {
     if ($display === 'flexDJC') {
@@ -63,6 +65,9 @@ export const Box = styled.div<BoxProps>`
       return flexAlignItemsCenter;
     } else if ($display === 'flexFlexStartCenter') {
       return flexFlexStartCenter;
+    } else if ($display === 'flexCW') {
+      return flexCW;
     }
-  }}
+  }};
+  gap: ${({ $gap }) => $gap}px;
 `;

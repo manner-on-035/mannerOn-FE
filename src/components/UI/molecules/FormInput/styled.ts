@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 interface InputContainerProps {
-  width: number;
-  height: number;
+  width: number | 'auto';
+  height: number | 'auto';
   $betweenSpace: number;
 }
 
@@ -16,8 +16,8 @@ interface TitleProps {
 }
 
 export const InputContainer = styled.div<InputContainerProps>`
-  width: ${({ width }) => width}px;
-  height: ${({ height }) => height}px;
+  width: ${({ width }) => (width === 'auto' ? 'auto' : `${width}px`)};
+  height: ${({ height }) => (height === 'auto' ? 'auto' : `${height}px`)}px;
   & + & {
     margin-top: ${({ $betweenSpace }) => $betweenSpace}px;
   }
@@ -37,13 +37,14 @@ export const Title = styled.div<TitleProps>`
   }}px;
   display: flex;
   align-items: center;
-  color: var(--textBlack);
+  color: ${({ theme }) => theme.colors.darkgray};
 `;
 
 export const ErrMsg = styled.div<MsgProps>`
   margin-top: 6px;
   font-style: normal;
   font-weight: normal;
+  color: ${({ theme }) => theme.colors.negative};
   font-size: ${({ $msgFontSize }) => $msgFontSize}px;
   line-height: ${({ $msgFontSize, $msgFontLineHeight }) => {
     if ($msgFontSize === 14) {
@@ -56,24 +57,5 @@ export const ErrMsg = styled.div<MsgProps>`
   }}px;
   display: flex;
   align-items: center;
-  color: var(--error);
-  white-space: pre-wrap;
-`;
-
-export const ConfirmMsg = styled.div<MsgProps>`
-  margin-top: 6px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: ${({ $msgFontSize }) => $msgFontSize}px;
-  line-height: ${({ $msgFontSize }) => {
-    if ($msgFontSize === 14) {
-      return '20';
-    } else {
-      return '24';
-    }
-  }}px;
-  display: flex;
-  align-items: center;
-  color: var(--confirm);
   white-space: pre-wrap;
 `;

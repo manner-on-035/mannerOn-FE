@@ -2,41 +2,47 @@ import React from 'react';
 import * as S from './styled';
 
 export interface BoxProps {
+  gap?: number;
   color?: string;
+  margin?: string;
   padding?: string;
   display?: string;
+  fontSize?: number;
+  fontWeight?: number;
   textAlign?: string;
-  marginTop?: number;
-  marginLeft?: number;
   borderRadius?: number;
   backgroundColor?: string;
-  width: number | 'auto';
-  height: number | string | 'auto';
+  width?: number | 'auto';
+  height?: number | string;
   children?: React.ReactNode;
 }
 
 const Box: React.FC<BoxProps> = ({
-  width,
-  height,
+  margin,
   padding,
   display,
+  gap = 0,
   textAlign,
-  marginTop,
-  marginLeft,
+  fontSize = 14,
+  fontWeight = 400,
+  width = 'auto',
+  height = 'auto',
   color = 'gray60',
   borderRadius = 0,
   backgroundColor = 'white',
   children,
 }) => {
   const style = {
+    $gap: gap,
     $color: color,
     $width: width,
+    $margin: margin,
     $height: height,
     $padding: padding,
     $display: display,
-    $marginTo: marginTop,
+    $fontSize: fontSize,
+    $fontWeight: fontWeight,
     $textAlign: textAlign,
-    $marginLeft: marginLeft,
     $borderRadius: borderRadius,
     $backgroundColor: backgroundColor,
   };

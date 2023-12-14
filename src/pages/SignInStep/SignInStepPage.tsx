@@ -1,15 +1,84 @@
-import { Box, SvgWrapper } from '@UI/atoms';
+import React, { ChangeEvent, useState } from 'react';
+import { Container } from '@UI/template';
+import { Box, SvgWrapper, Button, Text } from '@UI/atoms';
+import { SignIn, SignInNickName, SignInGender, SignInJob, SignInAge, SignInSuccess } from '@components/SignInStep';
 import backIcon from '@assets/icon/backIcon.svg';
+import closeIcon from '@assets/icon/closeIcon.svg';
 
-const SignInStepPage = () => {
+// 임의의 API 성공 값
+const isSignInSuccess = false;
+
+const SignInStepPage: React.FC = () => {
+  const [currentStep, setCurrentStep] = useState(0);
+  // TODO: 객체화
+  const [currenNickName, setCurrentNickName] = useState<string>('');
+  const [currentGender, setCurrentGender] = useState<number>(1);
+  const [currentJob, setCurrentJob] = useState<number>(0);
+  const [currentAge, setCurrentAge] = useState<number>(1);
+
+  const handleNicknameChange = (e: ChangeEvent<HTMLInputElement>) => setCurrentNickName(e.target.value);
+  const handleClickStepButton = () => {
+    if (currentStep >= 4) {
+      // api 호출
+      return;
+    }
+    setCurrentStep(currentStep + 1);
+  };
+
+  const stepList = [
+    <SignInNickName key={0} onChange={handleNicknameChange} />,
+    <SignInGender key={1} current={currentGender} setCurrent={setCurrentGender} />,
+    <SignInJob key={2} current={currentJob} setCurrent={setCurrentJob} />,
+    <SignInAge key={3} current={currentAge} setCurrent={setCurrentAge} />,
+  ];
+
   return (
-    <Box width={'auto'} height={'100vh'}>
-      <Box width={'auto'} height={50} padding={'0 16px'} display={'flexAlignItemsCenter'}>
-        <SvgWrapper svg={backIcon} onClick={() => {}} style={{ cursor: 'pointer' }} />
+    <Box height={'100vh'}>
+      <Box height={50} display={isSignInSuccess ? 'flexEC' : 'flexAlignItemsCenter'}>
+        <SvgWrapper
+          svg={isSignInSuccess ? closeIcon : backIcon}
+          onClick={() => setCurrentStep(currentStep - 1)}
+          style={{ cursor: 'pointer' }}
+        />
+        {!currentStep && (
+          <Text width={282} textAlign={'center'} fontWeight={700}>
+            회원가입
+          </Text>
+        )}
       </Box>
-      <Box width={'auto'} height={'auto'} backgroundColor="warning">
-        1,2,3,4
-      </Box>
+      <Container>
+        {!currentStep ? (
+          <SignIn />
+        ) : (
+          <>
+            {isSignInSuccess ? (
+              <SignInSuccess nickname={currenNickName} />
+            ) : (
+              <Box>
+                <Box padding={'20px 0 40px 0'} display={'flexAlignItemsCenter'} gap={6}>
+                  {[1, 2, 3, 4].map((item) => (
+                    <Box
+                      key={item}
+                      width={24}
+                      height={24}
+                      color={'white'}
+                      borderRadius={50}
+                      display={'flexCC'}
+                      backgroundColor={currentStep === item ? 'secondary' : 'gray30'}
+                      fontWeight={600}>
+                      {item}
+                    </Box>
+                  ))}
+                </Box>
+                {stepList.filter((_, i) => i + 1 === currentStep)}
+              </Box>
+            )}
+            <Button backgroundColor={'primary'} margin={'0 0 40px 0'} onClick={handleClickStepButton}>
+              {isSignInSuccess ? '확인' : '다음'}
+            </Button>
+          </>
+        )}
+      </Container>
     </Box>
   );
 };
