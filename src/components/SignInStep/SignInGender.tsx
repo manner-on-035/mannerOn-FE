@@ -1,14 +1,14 @@
 import React from 'react';
 import { Box, Text, Button } from '@UI/atoms';
 
-interface SignInNickNameProps {
+interface SignInGenderProps {
   current: number;
   setCurrent: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const buttonList = ['남성', '여성'];
 
-const SignInGender: React.FC<SignInNickNameProps> = ({ current, setCurrent }) => {
+const SignInGender: React.FC<SignInGenderProps> = ({ current, setCurrent }) => {
   return (
     <Box fontWeight={500}>
       <Box fontSize={24} fontWeight={700} padding={'0 0 40px 0'}>
