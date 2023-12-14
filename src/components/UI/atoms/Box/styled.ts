@@ -5,6 +5,7 @@ import {
   flexSBC,
   flexDAC,
   flexDJC,
+  flexCW,
   flexJustifyCenter,
   flexFlexStartCenter,
   flexAlignItemsCenter,
@@ -64,6 +65,8 @@ export const Box = styled.div<BoxProps>`
       return flexAlignItemsCenter;
     } else if ($display === 'flexFlexStartCenter') {
       return flexFlexStartCenter;
+    } else if ($display === 'flexCW') {
+      return flexCW;
     }
   }};
   gap: ${({ $gap }) => $gap}px;
