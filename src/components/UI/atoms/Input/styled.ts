@@ -13,19 +13,32 @@ export const Input = styled.input<InputProps>`
   height: ${({ height }) => height}px;
   padding-left: 16px;
   border: 1px solid;
-  border-color: ${({theme}) => theme.colors.gray30};
+  border-color: ${({ theme }) => theme.colors.gray30};
   border-radius: ${({ $borderRadius }) => $borderRadius}px;
-  background-color: ${({ $backGroundColor }) => ''}};
+  background-color: ${({ theme, disabled }) => {
+    if (disabled) {
+      return theme.colors.gray30;
+    } else {
+      return theme.colors.white;
+    }
+  }};
+
   &::placeholder {
-    ${({theme}) => theme.fonts.body2};
-    color: ${({theme}) => theme.colors.gray50};
+    ${({ theme }) => theme.fonts.body2};
+    color: ${({ theme, disabled }) => {
+      if (disabled) {
+        return theme.colors.gray40;
+      } else {
+        return theme.colors.gray50;
+      }
+    }};
   }
   &:focus {
     border: ${({ $isError, $borderColorOnFocus, theme }) => {
       if ($isError) {
         return theme.colors.negative;
       } else if ($borderColorOnFocus) {
-        return theme.colors.main;
+        return theme.colors.darkgray;
       }
     }};
   }

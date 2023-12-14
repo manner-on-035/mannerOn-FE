@@ -58,3 +58,15 @@ export const flexSBS = css`
   justify-content: space-between;
   align-items: start;
 `;
+
+export const flexDSB = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const flexCW = css`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+`;

@@ -3,44 +3,44 @@ import { Input } from '@components/UI/atoms';
 import * as S from './styled';
 
 export interface FormInputProps {
-  width: number;
   value?: string;
   title?: string;
   fontSize?: number;
   isError?: boolean;
   errorMsg?: string;
-  inputHeight: number;
+  inputHeight?: number;
   msgFontSize?: number;
   betweenSpace?: number;
-  borderRadius: number;
+  borderRadius?: number;
   placeholder?: string;
   titleFontSize?: number;
-  containerHeight: number;
-  msgFontLineHeight?: number;
+  backGroundColor?: string;
   borderColorOnFocus?: string;
-  backGroundColor: string;
+  width?: number | 'auto';
+  containerHeight?: number | 'auto';
+  msgFontLineHeight?: number;
   maxLength?: number;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
-  title,
-  width,
   isError,
   errorMsg,
   fontSize,
   maxLength,
-  inputHeight,
   placeholder,
-  borderRadius,
-  containerHeight,
-  backGroundColor,
   borderColorOnFocus,
+  width = 'auto',
+  inputHeight = 48,
+  borderRadius = 4,
   betweenSpace = 0,
   msgFontSize = 14,
   titleFontSize = 16,
   msgFontLineHeight = 24,
+  containerHeight = 'auto',
+  backGroundColor = 'white',
+  title,
   value,
   onFocus,
   onChange,
@@ -49,7 +49,6 @@ const FormInput: React.FC<FormInputProps> = ({
     <S.InputContainer width={width} height={containerHeight} $betweenSpace={betweenSpace}>
       {title && <S.Title fontSize={titleFontSize}>{title}</S.Title>}
       <Input
-        width={width}
         isError={isError}
         fontSize={fontSize}
         height={inputHeight}
