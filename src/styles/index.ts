@@ -9,6 +9,7 @@ export {
   flexSBC,
   flexSBS,
   flexDSB,
+  flexCW,
   flexJustifyCenter,
   flexFlexStartCenter,
   flexAlignItemsCenter,
