@@ -1,5 +1,7 @@
 import React from 'react';
 import * as S from './styled';
+import { useFormContext } from 'react-hook-form';
+
 export interface InputProps {
   width?: number;
   height?: number;
@@ -14,6 +16,7 @@ export interface InputProps {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
   children?: React.ReactNode;
+  registerName?: string;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -22,14 +25,17 @@ const Input: React.FC<InputProps> = ({
   isError = false,
   placeholder,
   borderRadius = 4,
-  backGroundColor = "white",
-  borderColorOnFocus = "gray",
+  backGroundColor = 'white',
+  borderColorOnFocus = 'gray',
   fontSize = 14,
   value,
   maxLength,
+  registerName,
   onChange,
   onFocus,
 }) => {
+  const { register } = useFormContext();
+
   return (
     <S.Input
       width={width}
@@ -44,7 +50,7 @@ const Input: React.FC<InputProps> = ({
       $fontSize={0}
       onChange={onChange}
       onFocus={onFocus}
-
+      {...(registerName && register(registerName))}
     />
   );
 };
