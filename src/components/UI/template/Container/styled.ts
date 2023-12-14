@@ -1,8 +1,18 @@
 import styled from 'styled-components';
-import { flexDSB } from '@styles/index';
+import { flexDAC, flexDSB } from '@styles/index';
 
-export const Container = styled.div`
+interface ContainerProps {
+  $display: string;
+}
+
+export const Container = styled.div<ContainerProps>`
   width: auto;
   height: calc(100vh - 50px);
-  ${flexDSB}
+  ${({ $display }) => {
+    if ($display === 'flexDSB') {
+      return flexDSB;
+    } else if ($display === 'flexDAC') {
+      return flexDAC;
+    }
+  }};
 `;
