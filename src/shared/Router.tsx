@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { SplashPage, SignInStepPage } from '@pages/index';
+import { SplashPage, HomePage, SignInStepPage } from '@pages/index';
 import { Frame } from '@components/UI/template';
 import LoginPage from '@pages/Login/LoginPage';
 
@@ -18,7 +18,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Frame />}>
           <Route path="" element={<SplashPage />} />
-          <Route path="login" element={<LoginPage />} />
+          <Route path="home" element={<HomePage />} />
           <Route path="signin-step" element={<SignInStepPage />} />
         </Route>
       </Routes>
@@ -27,4 +27,3 @@ const Router = () => {
 };
 
 export default Router;
-

@@ -1,5 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
+import { REGEX } from '@shared/index';
 import { Container } from '@UI/template';
+import { useFormContext } from 'react-hook-form';
 import { Box, SvgWrapper, Button, Text } from '@UI/atoms';
 import { SignIn, SignInNickName, SignInGender, SignInJob, SignInAge, SignInSuccess } from '@components/SignInStep';
 import backIcon from '@assets/icon/backIcon.svg';
@@ -9,12 +11,22 @@ import closeIcon from '@assets/icon/closeIcon.svg';
 const isSignInSuccess = false;
 
 const SignInStepPage: React.FC = () => {
+  const { getValues, setValue } = useFormContext();
   const [currentStep, setCurrentStep] = useState(0);
-  // TODO: 객체화
   const [currenNickName, setCurrentNickName] = useState<string>('');
   const [currentGender, setCurrentGender] = useState<number>(1);
   const [currentJob, setCurrentJob] = useState<number>(0);
   const [currentAge, setCurrentAge] = useState<number>(1);
+
+  const handleClickConfirmButton = () => {
+    const { id, pw, pwConfirm } = getValues('signIn');
+    setValue('signInError.id', !REGEX.id.test(id));
+    setValue('signInError.pw', !REGEX.pw.test(pw));
+    setValue('signInError.pwConfirm', pw !== pwConfirm);
+
+    if (!REGEX.id.test(id) || !REGEX.pw.test(pw) || pw !== pwConfirm) return;
+    else return;
+  };
 
   const handleNicknameChange = (e: ChangeEvent<HTMLInputElement>) => setCurrentNickName(e.target.value);
   const handleClickStepButton = () => {
@@ -48,7 +60,7 @@ const SignInStepPage: React.FC = () => {
       </Box>
       <Container>
         {!currentStep ? (
-          <SignIn />
+          <SignIn onClickConfirmButton={handleClickConfirmButton} />
         ) : (
           <>
             {isSignInSuccess ? (
