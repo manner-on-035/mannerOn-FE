@@ -5,9 +5,11 @@ import { useFormContext } from 'react-hook-form';
 export interface InputProps {
   width?: number;
   height?: number;
+  margin?: string;
   fontSize?: number;
   isError?: boolean;
   borderRadius?: number;
+  borderColor?: string;
   placeholder?: string;
   backGroundColor?: string;
   borderColorOnFocus?: string;
@@ -20,16 +22,18 @@ export interface InputProps {
 }
 
 const Input: React.FC<InputProps> = ({
+  margin,
   width = 328,
   height = 48,
+  borderColor,
+  fontSize = 14,
   isError = false,
-  placeholder,
   borderRadius = 4,
   backGroundColor = 'white',
   borderColorOnFocus = 'gray',
-  fontSize = 14,
   value,
   maxLength,
+  placeholder,
   registerName,
   onChange,
   onFocus,
@@ -38,18 +42,20 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <S.Input
+      $fontSize={0}
       width={width}
       height={height}
+      $margin={margin}
       $isError={isError}
-      placeholder={placeholder}
+      $borderColor={borderColor}
       $borderRadius={borderRadius}
       $backGroundColor={backGroundColor}
       $borderColorOnFocus={borderColorOnFocus}
       value={value}
       maxLength={maxLength}
-      $fontSize={0}
-      onChange={onChange}
+      placeholder={placeholder}
       onFocus={onFocus}
+      onChange={onChange}
       {...(registerName && register(registerName))}
     />
   );
