@@ -64,3 +64,9 @@ export const flexDSB = css`
   flex-direction: column;
   justify-content: space-between;
 `;
+
+export const flexCW = css`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+`;
