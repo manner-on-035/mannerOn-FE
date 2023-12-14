@@ -20,6 +20,7 @@ export interface FormInputProps {
   containerHeight?: number | 'auto';
   msgFontLineHeight?: number;
   maxLength?: number;
+  registerName?: string;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
@@ -42,6 +43,7 @@ const FormInput: React.FC<FormInputProps> = ({
   backGroundColor = 'white',
   title,
   value,
+  registerName,
   onFocus,
   onChange,
 }) => {
@@ -58,10 +60,11 @@ const FormInput: React.FC<FormInputProps> = ({
         borderColorOnFocus={borderColorOnFocus}
         value={value}
         maxLength={maxLength}
+        registerName={registerName}
         onFocus={onFocus}
         onChange={onChange}
       />
-      {errorMsg && (
+      {isError && (
         <S.ErrMsg $msgFontSize={msgFontSize} $msgFontLineHeight={msgFontLineHeight}>
           {errorMsg}
         </S.ErrMsg>
