@@ -1,14 +1,22 @@
-import { ChatInput } from "@UI/atoms";
+import ChatBox from '@UI/atoms/ChatBox';
 import * as S from "./styled"
-import BlackSmallLogo from '@assets/logo/BlackSmallLogo.svg'
+import blackSmallLogo from '@assets/logo/blackSmallLogo.svg'
 
 const MainPage = () => {
 
-    return{
-        <>
-          <ChatInput/>
-        </>
-    }
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+       
+  };
+
+    return(
+        <S.Main>
+          <ChatBox 
+          $isError={false}
+          $backGroundColor={"secondary"}
+          onFocus={handleButtonClick}
+          text={"text"}/>
+        </S.Main>
+    )
 }
 
 export default MainPage

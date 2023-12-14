@@ -1,6 +1,6 @@
 import { Button, Input } from "@UI/atoms";
 import * as S from "./styled"
-import BlackMediumLogo from '@assets/logo/BlackMediumLogo.svg'
+import blackMediumLogo from '@assets/logo/blackMediumLogo.svg'
 
 const LoginPage = () => {
     console.log("login")
@@ -15,7 +15,7 @@ const LoginPage = () => {
         <S.Login>
             <S.WrapperTop>
                 <S.ImgWrapper>  
-                    <img src={BlackMediumLogo} alt="logo"/>
+                    <img src={blackMediumLogo} alt="logo"/>
                 </S.ImgWrapper>
                 <S.LoginTitle>안녕하세요.<br/><S.OrangeText>매너ON</S.OrangeText>입니다.</S.LoginTitle>
                 <S.LoginSubTitle>회원 서비스 이용을 위해 로그인 해주세요.</S.LoginSubTitle>
