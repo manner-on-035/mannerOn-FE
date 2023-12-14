@@ -1,6 +1,6 @@
-import ChatBox from '@UI/atoms/ChatBox';
+// import ChatBox from '@UI/atoms/ChatBox';
 import * as S from "./styled"
-import blackSmallLogo from '@assets/logo/blackSmallLogo.svg'
+// import blackSmallLogo from '@assets/logo/blackSmallLogo.svg'
 
 const MainPage = () => {
 
@@ -10,11 +10,11 @@ const MainPage = () => {
 
     return(
         <S.Main>
-          <ChatBox 
+          {/* <ChatBox 
           $isError={false}
           $backGroundColor={"secondary"}
           onFocus={handleButtonClick}
-          text={"text"}/>
+          text={"text"}/> */}
         </S.Main>
     )
 }
