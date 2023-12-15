@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 // @assets/logo/WhiteBigLogo.svg
 export const Splash = styled.section` 
-   background-color:  ${({theme}) => theme.colors.primary};;
+   background-color:  ${({theme}) => theme.colors.primary};
+   margin: 0px -16px 0px -16px;
 `;
 
 export const Wrapper = styled.div` 
@@ -21,7 +22,7 @@ export const Title = styled.p`
 
 `;
 export const Highlight = styled.span`
-    color: ${({theme}) => theme.colors.secondary};
+  color: ${({theme}) => theme.colors.secondary};
 
 
 `;
