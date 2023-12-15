@@ -1,14 +1,14 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosRequestHeaders } from 'axios';
 import { HTTPResponse, BusinessErrorResponse, RequestParam } from '../types/common';
 
-export const API_SERVER = process.env.API_URL || '';
+export const API_SERVER = process.env.REACT_APP_URL || '';
 
 const getHttpResponse = async <T>({ fn }: { fn: () => Promise<AxiosResponse<T>> }): Promise<HTTPResponse<T>> => {
   try {
     const result = await fn();
     const { status, data } = result;
     const successResponse: HTTPResponse<T> = { status, data };
-    const token: string = result.headers.authorization;
+    const token: string = result.headers.accesstoken;
 
     if (token !== undefined) {
       sessionStorage.setItem('token', token);

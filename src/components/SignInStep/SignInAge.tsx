@@ -2,11 +2,11 @@ import React from 'react';
 import { Box, Text, Button } from '@UI/atoms';
 
 interface SignInAgeProps {
-  current: number;
-  setCurrent: React.Dispatch<React.SetStateAction<number>>;
+  current: string;
+  setCurrent: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const buttonList = ['10대', '20~14세', '25~29세', '30~34세', '35세 이상'];
+const buttonList = ['10대', '20-24세', '25-29세', '30-34세', '35세 이상'];
 
 const SignInAge: React.FC<SignInAgeProps> = ({ current, setCurrent }) => {
   return (
@@ -18,15 +18,15 @@ const SignInAge: React.FC<SignInAgeProps> = ({ current, setCurrent }) => {
         를 선택해주세요!
       </Box>
       <Box display={'flexCW'} gap={8}>
-        {buttonList.map((gender, i) => (
+        {buttonList.map((age, i) => (
           <Button
             key={i}
             width={160}
             height={46}
-            color={current === i ? 'white' : 'gray50'}
-            backgroundColor={current === i ? 'secondary' : 'gray30'}
-            onClick={() => setCurrent(i)}>
-            {gender}
+            color={current === age ? 'white' : 'gray50'}
+            backgroundColor={current === age ? 'secondary' : 'gray30'}
+            onClick={() => setCurrent(age)}>
+            {age}
           </Button>
         ))}
       </Box>

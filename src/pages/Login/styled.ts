@@ -5,9 +5,7 @@ export const Login = styled.section`
 `;
 
 export const WrapperTop = styled.div`
-    color: ${({theme}) => theme.colors.darkgrey};
-
-    
+  color: ${({ theme }) => theme.colors.darkgrey};
 `;
 export const ImgWrapper = styled.div`
   padding-bottom: 24px;
@@ -24,10 +22,10 @@ export const LoginSubTitle = styled.p`
 
 export const WrapperCenter = styled.div`
   padding-top: 48px;
-
-  Input {
-    margin-bottom: 12px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
 `;
 
 export const JoinText = styled.p`
@@ -36,8 +34,17 @@ export const JoinText = styled.p`
   margin-top: 48px;
   text-align: center;
 `;
-export const UnderlineText = styled.a`
+
+export const UnderlineText = styled.button`
+  padding: 0;
+  width: 43px;
+  height: 14px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
   font-weight: 700;
+  border-bottom: 1px solid black;
   color: ${({ theme }) => theme.colors.darkgray};
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 export const HighLight = styled.span``;
