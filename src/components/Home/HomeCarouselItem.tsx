@@ -1,15 +1,24 @@
-import { Text } from '@UI/atoms';
 import * as S from './styled';
 
-const HomeCarouselItem = ({ items }: any) => {
+interface HomeCarouselItemProps {
+  items: string[];
+  onItemSelect: (item: string) => void;
+  selectedItem: string | null;
+}
+
+const HomeCarouselItem: React.FC<HomeCarouselItemProps> = ({ items, onItemSelect, selectedItem }) => {
   return (
     <>
       {items?.map((item: string) => {
         return (
-          <S.CarouselItem key={item}>
-            <Text fontSize={14} fontWeight={500}>
-              {item}
-            </Text>
+          <S.CarouselItem
+            key={item}
+            onClick={() => onItemSelect(item)}
+            selected={item === selectedItem}
+          >
+            <S.CarouselText selected={item === selectedItem}>
+             {item}
+            </S.CarouselText>
           </S.CarouselItem>
         );
       })}

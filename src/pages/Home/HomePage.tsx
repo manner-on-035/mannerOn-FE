@@ -34,7 +34,7 @@ const HomePage = () => {
           <S.WrapperTop>
             <Box display={'flexDAC'} textAlign={'center'}>
               <SvgWrapper width={48} height={48} style={{ marginBlock: '10px' }} svg={blackSmallLogo} />
-              <Text width={270} fontSize={14} fontWeight={500} color={'darkgray'}>
+              <Text width={270} fontSize={14} fontWeight={500} line-height={18} color={'darkgray'}>
                 질문에 포함하면 더 정확한 답변을 받을수 있어요 대화상대, 대화 목적, 예시, 지시사항
               </Text>
             </Box>
@@ -42,16 +42,16 @@ const HomePage = () => {
           <Box>
             <Box display={'flexCC'} textAlign={'center'} padding={'15px'}>
               <SvgWrapper svg={dotIcon} />
-              <Text width={200} fontSize={14} fontWeight={500} color={'gray50'}>
+              <Text width={200} fontSize={14} fontWeight={700} line-height={18} color={'gray50'}>
                 아래 카테고리를 이용할 수 있어요
               </Text>
             </Box>
-            {/* <Carousel/> */}
+            <Carousel/>
             {/* <HomeCarouselDots /> */}
-            <ChatIcons/>
+            {/* <ChatIcons/>
             <ChatBox backGroundColor={'gray'}>
               {'안녕하세요,안녕하세요, 보고서 작성에 필요한 자료 전달에 대해 문'}
-            </ChatBox>
+            </ChatBox> */}
           </Box>
         </Box>
         <Box display={'flexCC'} margin={'0 0 20px 0'} gap={4}>
