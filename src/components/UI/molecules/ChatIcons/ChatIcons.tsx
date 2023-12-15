@@ -6,34 +6,36 @@ import DislikeIcon from '@assets/icon/dislikeIcon'
 import { Modal } from '@UI/atoms/Modal';
 
 export interface ChatIconProps {
-//   value?: string;
-//   betweenSpace?: number;
-//   containerHeight?: number | 'auto';
-  // isClicked?: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  style?: React.CSSProperties; 
-  // setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ChatIcons: React.FC<ChatIconProps> = ({
-//   betweenSpace = 2,
-//   containerHeight = 'auto',
-//   value,
   onChange,  
   onClick,
-  style,
 
 }) => {
 
   const [copyClicked, setcopyClicked] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [likeIconClicked, setLikeIconClicked] = useState(false);
+  const [dislikeIconClicked, setDislikeIconClicked] = useState(false);
 
   const handleClick = () => {
     setcopyClicked(!copyClicked);
     if (!copyClicked) {
       showModal();
     }
+  };
+
+  const handleLikeIconClick = () => {
+    setLikeIconClicked(!likeIconClicked);
+    setDislikeIconClicked(false);
+  };
+
+  const handleDislikeIconClick = () => {
+    setDislikeIconClicked(!dislikeIconClicked);
+    setLikeIconClicked(false);
   };
 
   const showModal = () => {
@@ -48,10 +50,10 @@ const ChatIcons: React.FC<ChatIconProps> = ({
         {modalOpen && <Modal setModalOpen={setModalOpen} />}
       </S.StyledCopyIcon>
       <S.StyledLikeIcon>
-        <LikeIcon  />
+        <LikeIcon isClicked={likeIconClicked} onClick={handleLikeIconClick}/>
       </S.StyledLikeIcon>
       <S.StyledDislikeIcon>
-       <DislikeIcon  />
+       <DislikeIcon  isClicked={dislikeIconClicked} onClick={handleDislikeIconClick}/>
       </S.StyledDislikeIcon>
     </S.ChatIcons>
   );
