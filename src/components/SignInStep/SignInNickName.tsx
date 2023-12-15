@@ -1,11 +1,11 @@
 import React from 'react';
-import { Box, Text, Input } from '@UI/atoms';
+import { FormInput } from '@UI/molecules';
+import { Box, Text } from '@UI/atoms';
+import { useFormContext } from 'react-hook-form';
 
-interface SignInNickNameProps {
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-}
+const SignInNickName: React.FC = () => {
+  const { watch } = useFormContext();
 
-const SignInNickName: React.FC<SignInNickNameProps> = ({ onChange }) => {
   return (
     <Box fontWeight={500}>
       <Box fontSize={24} fontWeight={700}>
@@ -21,7 +21,13 @@ const SignInNickName: React.FC<SignInNickNameProps> = ({ onChange }) => {
         <br />
         특수문자는 제외해주세요.
       </Box>
-      <Input placeholder={'닉네임 입력'} maxLength={30} onChange={onChange} />
+      <FormInput
+        maxLength={30}
+        placeholder={'닉네임 입력'}
+        registerName={'signIn.nickname'}
+        isError={watch('signInError.nickname')}
+        errorMsg={'닉네임은 1-10자의 문자, 숫자로 구성되어야합니다.'}
+      />
     </Box>
   );
 };
