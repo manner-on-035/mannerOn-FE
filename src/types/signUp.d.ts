@@ -22,3 +22,14 @@ export interface SignUpRes {
   message: string;
   statusCode: string;
 }
+
+export interface SignInReq {
+  email: string;
+  password: string;
+}
+
+export interface SignInRes {
+  message: string;
+  statusCode: string;
+  data: null;
+}
