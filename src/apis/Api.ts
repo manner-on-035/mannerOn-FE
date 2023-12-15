@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosRequestHeaders } from 'axios';
 import { HTTPResponse, BusinessErrorResponse, RequestParam } from '../types/common';
 
-export const API_SERVER = process.env.API_URL || '';
+export const API_SERVER = process.env.REACT_APP_URL || '';
 
 const getHttpResponse = async <T>({ fn }: { fn: () => Promise<AxiosResponse<T>> }): Promise<HTTPResponse<T>> => {
   try {
