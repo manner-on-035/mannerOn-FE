@@ -2,8 +2,8 @@ import React from 'react';
 import { Box, Text, Button } from '@UI/atoms';
 
 interface SignInJobProps {
-  current: number;
-  setCurrent: React.Dispatch<React.SetStateAction<number>>;
+  current: string;
+  setCurrent: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const buttonList = ['직장인', '프리랜서', '학생', '주부', '공무원', '전문직', '자영업', '무직', '아르바이트생'];
@@ -18,15 +18,15 @@ const SignInJob: React.FC<SignInJobProps> = ({ current, setCurrent }) => {
         을 하시나요?
       </Box>
       <Box display={'flexCW'} gap={8}>
-        {buttonList.map((gender, i) => (
+        {buttonList.map((job, i) => (
           <Button
             key={i}
             width={160}
             height={46}
-            color={current === i ? 'white' : 'gray50'}
-            backgroundColor={current === i ? 'secondary' : 'gray30'}
-            onClick={() => setCurrent(i)}>
-            {gender}
+            color={current === job ? 'white' : 'gray50'}
+            backgroundColor={current === job ? 'secondary' : 'gray30'}
+            onClick={() => setCurrent(job)}>
+            {job}
           </Button>
         ))}
       </Box>

@@ -2,8 +2,8 @@ import React from 'react';
 import { Box, Text, Button } from '@UI/atoms';
 
 interface SignInGenderProps {
-  current: number;
-  setCurrent: React.Dispatch<React.SetStateAction<number>>;
+  current: string;
+  setCurrent: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const buttonList = ['남성', '여성'];
@@ -23,9 +23,9 @@ const SignInGender: React.FC<SignInGenderProps> = ({ current, setCurrent }) => {
             key={i}
             height={46}
             margin={'0 0 40px 0'}
-            color={current === i ? 'white' : 'gray50'}
-            backgroundColor={current === i ? 'secondary' : 'gray30'}
-            onClick={() => setCurrent(i)}>
+            color={current === gender ? 'white' : 'gray50'}
+            backgroundColor={current === gender ? 'secondary' : 'gray30'}
+            onClick={() => setCurrent(gender)}>
             {gender}
           </Button>
         ))}
