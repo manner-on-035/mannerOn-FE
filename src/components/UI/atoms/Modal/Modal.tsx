@@ -6,20 +6,14 @@ interface ModalProps {
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   }
   const Modal = ({ setModalOpen }: ModalProps) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
+    const [opacity, setOpacity] = useState(1);
     useEffect(() => {
-      if (isModalOpen) {
-        const timer = setTimeout(() => {
-          setIsModalOpen(false);
-          setModalOpen(false);
-        }, 2000);
+        const timer = setTimeout(() => setModalOpen(false), 3000);
         return () => clearTimeout(timer);
-      }
-    }, [isModalOpen]);
-  
+      }, []);
+      
     return (
-      <S.Modal>
+      <S.Modal opacity={opacity}>
         <S.CopyIconWrapper>
          <img src={copyModalIcon} alt="icon"/>
         </S.CopyIconWrapper>

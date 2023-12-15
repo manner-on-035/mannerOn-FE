@@ -6,6 +6,7 @@ interface ModalProps {
     isClicked?: boolean;
     onChange?: React.ChangeEventHandler<HTMLInputElement>;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    opacity?: number;
   }
 
   export const Modal = styled.div<ModalProps>`
@@ -23,6 +24,10 @@ interface ModalProps {
 
     background-color: #000000CC;
     border-radius: 8px;
+
+    opacity: ${({ opacity }) => opacity};
+    transition: opacity 1s ease-in-out;
+
   `;
 
   export const CopyIconWrapper = styled.div<ModalProps>`
