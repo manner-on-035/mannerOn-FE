@@ -13,6 +13,7 @@ export interface InputProps {
   placeholder?: string;
   backGroundColor?: string;
   borderColorOnFocus?: string;
+  type?: string;
   value?: string;
   maxLength?: number;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -34,6 +35,7 @@ const Input: React.FC<InputProps> = ({
   value,
   maxLength,
   placeholder,
+  type = 'text',
   registerName,
   onChange,
   onFocus,
@@ -51,6 +53,7 @@ const Input: React.FC<InputProps> = ({
       $borderRadius={borderRadius}
       $backGroundColor={backGroundColor}
       $borderColorOnFocus={borderColorOnFocus}
+      type={type}
       value={value}
       maxLength={maxLength}
       placeholder={placeholder}
