@@ -1,4 +1,14 @@
-export interface SignInReq {
+export interface SignUpEmailDuplicateReq {
+  email: string;
+}
+
+export interface SignUpEmailDuplicateRes {
+  statusCode: string;
+  message: string;
+  data: boolean;
+}
+
+export interface SignUpReq {
   email: string;
   password: string;
   checkPassword: string;
@@ -8,7 +18,7 @@ export interface SignInReq {
   ageRange: string;
 }
 
-export interface SignInRes {
+export interface SignUpRes {
   message: string;
   statusCode: string;
 }
