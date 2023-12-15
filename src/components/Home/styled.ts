@@ -12,12 +12,19 @@ export const CarouselItem = styled.div<CarouselItemProps>`
   padding: 8px 18px;
   margin: 4px;
   cursor: pointer;
-  background-color: ${({ selected, theme }) => (selected ? theme.colors.primary: theme.colors.gray20 )};
-`;
+  background-color: ${({ theme }) => (theme.colors.gray20 )};
+  &:hover {
+    background-color: ${({ selected, theme }) => (selected ? theme.colors.primary: theme.colors.gray20 )};
+  }
+  `;
 
 export const CarouselText = styled.p<CarouselItemProps>`
   ${({ theme }) => theme.fonts.body2_medium};
-  color: ${({ selected, theme }) => (selected ? theme.colors.white: theme.colors.darkgrey )};
+  color: ${({ theme }) => (theme.colors.darkgrey )};
+  &:hover {
+    color: ${({ selected, theme }) => (selected ? theme.colors.white: theme.colors.darkgrey )};
+  }
+ 
 `;
 
 export const CarouselDots = styled.div`

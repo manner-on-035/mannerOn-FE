@@ -11,10 +11,23 @@ import { HomeCarousel, HomeCarouselDots } from '@components/Home';
 import Carousel from '@UI/organisms/Carousel';
 import {ChatIcons} from '@UI/molecules/ChatIcons';
 
-
+// const carouselItems = [
+//   { category: '매너있게', items: ['정중하게 부탁 거절', '정중하게 업무 요청', '매너있게 상대방과 다른 의견 전달'] },
+//   { category: '사회생활 만렙', items: ['경조사 인사', '감사인사 전달', '명절인사 전달'] },
+//   {
+//     category: '프로페셔널',
+//     items: ['실수 내용은 인정하고 수습, 대처방안 전달하기', '간결, 논리정연하게 수정', '프로페셔널하게 기한 연장 요청'],
+//   },
+// ];
 
 const HomePage = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+
+  const handleButtonClick = (item: string) => {
+    setSelectedItem(item)
+    
+  }
 
   return (
     <Box height={'100vh'}>
@@ -33,18 +46,24 @@ const HomePage = () => {
             </Box>
           </S.WrapperTop>
           <Box>
-            <Box display={'flexCC'} textAlign={'center'} padding={'85px 15px 15px 15px'}>
-              <SvgWrapper svg={dotIcon} />
-              <Text width={200} fontSize={14} fontWeight={700} line-height={18} color={'gray50'}>
-                아래 카테고리를 이용할 수 있어요
-              </Text>
-            </Box>
-            <Carousel/>
+            {selectedItem ? (<ChatBox>{selectedItem}</ChatBox>) : (
+              <>
+                <Box display={'flexCC'} textAlign={'center'} padding={'85px 15px 15px 15px'}>
+                  <SvgWrapper svg={dotIcon} />
+                  <Text width={150} fontSize={14} fontWeight={700} line-height={18} color={'gray50'}>
+                    이런걸 물어 볼 수 있어요.
+                  </Text>
+                </Box>
+                <Carousel onItemSelect={handleButtonClick} />
+              </> 
+            )
+          }
+            
 
-    
-            <ChatBox backGroundColor={'gray'}>
-              {'안녕하세요,안녕하세요, 보고서 작성에 필요한 자료 전달에 대해 문'}
-            </ChatBox> 
+{/*     
+            <ChatBox>
+              {'안녕하세요'}
+            </ChatBox>  */}
           </Box>
         </Box>
         <Box display={'flexCC'} margin={'0 0 20px 0'} gap={4}>

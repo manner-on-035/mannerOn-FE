@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import * as S from './styled';
 
 interface HomeCarouselItemProps {
@@ -7,6 +8,7 @@ interface HomeCarouselItemProps {
 }
 
 const HomeCarouselItem: React.FC<HomeCarouselItemProps> = ({ items, onItemSelect, selectedItem }) => {
+
   return (
     <>
       {items?.map((item: string) => {

@@ -2,10 +2,10 @@ import React from 'react';
 import { Box, Text } from '@UI/atoms';
 import HomeCarouselItem from './HomeCarouselItem';
 
-const HomeCarousel = ({ index, carouselItem, activeBtn, setActiveBtn }: any) => {
+const HomeCarousel = ({ carouselItem, activeBtn, onItemSelect }: any) => {
 
   const handleItemClick = (item: string) => {
-    setActiveBtn(item);
+    onItemSelect(item);
   };
 
   return (
@@ -13,7 +13,7 @@ const HomeCarousel = ({ index, carouselItem, activeBtn, setActiveBtn }: any) => 
       <Text fontSize={20} fontWeight={700} color={'darkgray'} padding={'10px'}>
         {carouselItem.category}
       </Text>
-      <HomeCarouselItem items={carouselItem.items} onItemSelect={} selectedItem={activeBtn} />
+      <HomeCarouselItem items={carouselItem.items} onItemSelect={handleItemClick} selectedItem={activeBtn} />
     </Box>
   );
 };

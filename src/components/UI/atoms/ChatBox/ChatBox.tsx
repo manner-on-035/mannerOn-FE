@@ -14,7 +14,7 @@ export interface ChatBoxProps {
 }
 
 const ChatBox: React.FC<ChatBoxProps> = ({
-  role = 'ai',
+  role = 'user',
   isError,
   onFocus,
   children,
@@ -24,7 +24,7 @@ const ChatBox: React.FC<ChatBoxProps> = ({
   return (
     <>
       {role === 'ai' &&
-      <SvgWrapper width={32} height={32} style={{marginBottom: '15px'}} svg={profile} />}
+      <SvgWrapper width={33} height={32} style={{marginBottom: '15px'}} svg={profile} />}
       <S.ChatBox
         $isError={isError}
         $borderRadius={0}
