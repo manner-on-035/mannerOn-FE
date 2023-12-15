@@ -1,8 +1,12 @@
 import React from 'react';
 import * as S from './styled';
 import { useFormContext } from 'react-hook-form';
+import {ChatIcons} from '@UI/molecules/ChatIcons';
+import { SvgWrapper } from '@UI/atoms';
+import profile from '@assets/logo/aiProfileLogo.svg'
 
 export interface ChatBoxProps {
+  role?: 'user' | 'ai';
   isError?: boolean;
   backGroundColor?: string;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
@@ -10,23 +14,27 @@ export interface ChatBoxProps {
 }
 
 const ChatBox: React.FC<ChatBoxProps> = ({
+  role = 'user',
   isError,
-  backGroundColor,
   onFocus,
   children,
 }) => { 
   const { register } = useFormContext();
-
+  
   return (
-    <S.ChatBox
-      $isError={isError}
-      $borderRadius={0}
-      $backGroundColor={backGroundColor}
-      onFocus={onFocus}
-    >
-      {children}
-    {/* <img src={copyIcon}></img> */}
-    </S.ChatBox>
+    <>
+      {role === 'ai' &&
+      <SvgWrapper width={33} height={32} style={{marginBottom: '15px'}} svg={profile} />}
+      <S.ChatBox
+        $isError={isError}
+        $borderRadius={0}
+        role={role}
+        onFocus={onFocus}
+      >
+        {children}
+        {role === 'ai' && <ChatIcons/>}
+      </S.ChatBox>
+    </>
   );
 };
 export default ChatBox;

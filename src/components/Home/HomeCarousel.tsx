@@ -2,10 +2,10 @@ import React from 'react';
 import { Box, Text } from '@UI/atoms';
 import HomeCarouselItem from './HomeCarouselItem';
 
-const HomeCarousel = ({ index, carouselItem, activeBtn, setActiveBtn }: any) => {
+const HomeCarousel = ({ carouselItem, activeBtn, onItemSelect }: any) => {
 
   const handleItemClick = (item: string) => {
-    setActiveBtn(item);
+    onItemSelect(item);
   };
 
   return (
