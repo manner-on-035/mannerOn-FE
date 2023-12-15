@@ -1,33 +1,70 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { CHAT_PROMPT } from '@libs/prompt';
 import * as S from './styled';
 import { Container } from '@UI/template';
+import Carousel from '@UI/organisms/Carousel';
 import { Box, SvgWrapper, Text, Input, ChatBox } from '@UI/atoms';
 import gnbIcon from '@assets/icon/gnbIcon.svg';
 import dotIcon from '@assets/icon/dotIcon.svg';
 import newChatIcon from '@assets/icon/newChatIcon.svg';
 import blackSmallLogo from '@assets/logo/BlackSmallLogo.svg';
 import sendDefaultIcon from '@assets/icon/sendDefaultIcon.svg';
-import { HomeCarousel, HomeCarouselDots } from '@components/Home';
-import Carousel from '@UI/organisms/Carousel';
-import {ChatIcons} from '@UI/molecules/ChatIcons';
+import { usePostChatStartMutation, usePostChatMutation } from '@apis/chat/chatQuery';
 
-// const carouselItems = [
-//   { category: '매너있게', items: ['정중하게 부탁 거절', '정중하게 업무 요청', '매너있게 상대방과 다른 의견 전달'] },
-//   { category: '사회생활 만렙', items: ['경조사 인사', '감사인사 전달', '명절인사 전달'] },
-//   {
-//     category: '프로페셔널',
-//     items: ['실수 내용은 인정하고 수습, 대처방안 전달하기', '간결, 논리정연하게 수정', '프로페셔널하게 기한 연장 요청'],
-//   },
-// ];
+interface SelectedQuestion {
+  question: string;
+  prompt: string;
+  chat: string;
+}
 
 const HomePage = () => {
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const { getValues, setValue } = useFormContext();
+  const [selectedQuestion, setSelectedQuestion] = useState<string>('');
+  const [seletedPrompt, setSelectedPrompt] = useState<SelectedQuestion>({ question: '', prompt: '', chat: '' });
+  const [chatList, setChatList] = useState<{ aiChat: string; userChat: string }[]>([]);
 
-  const handleButtonClick = (item: string) => {
-    setSelectedItem(item)
-    
-  }
+  const { mutate: postChatStart } = usePostChatStartMutation({
+    onSuccess: (res) => {
+      console.log('chat start success =>', res);
+      const chat = getValues('chat');
+      const { data } = res;
+      if (chat && getValues('chat.userChat')) {
+        setChatList((prev) => {
+          return [...prev, { aiChat: data.content, userChat: getValues('chat.userChat') }];
+        });
+      }
+    },
+  });
+
+  const handleCarouselItemClick = (item: string) => setSelectedQuestion(item);
+
+  const handleClickChatSendButton = () => {
+    const chat = getValues('chat');
+    if (selectedQuestion && chat && getValues('chat.userChat')) {
+      const { userChat } = getValues('chat');
+      // API 호출
+      setChatList((prev) => {
+        return [...prev, { aiChat: '', userChat }];
+      });
+      setValue('chat.userChat', '');
+    }
+  };
+
+  useEffect(() => {
+    if (selectedQuestion) {
+      const selectedQuestionItem = CHAT_PROMPT.QUESTION.find((item) => {
+        if (item.question === selectedQuestion) return item;
+      });
+      setSelectedPrompt(selectedQuestionItem as SelectedQuestion);
+    }
+  }, [selectedQuestion]);
+
+  useEffect(() => {
+    if (seletedPrompt?.prompt) {
+      postChatStart({ category: seletedPrompt?.question, chat: seletedPrompt?.prompt });
+    }
+  }, [seletedPrompt]);
 
   return (
     <Box height={'100vh'}>
@@ -36,7 +73,7 @@ const HomePage = () => {
         <SvgWrapper svg={newChatIcon} onClick={() => {}} style={{ cursor: 'pointer' }} />
       </Box>
       <Container>
-        <Box>
+        <S.ChatWrapper>
           <S.WrapperTop>
             <Box display={'flexDAC'} textAlign={'center'}>
               <SvgWrapper width={48} height={48} style={{ marginBlock: '10px' }} svg={blackSmallLogo} />
@@ -46,7 +83,51 @@ const HomePage = () => {
             </Box>
           </S.WrapperTop>
           <Box>
-            {selectedItem ? (<ChatBox>{selectedItem}</ChatBox>) : (
+            {selectedQuestion ? (
+              <Box display={'flexDJC'} gap={16}>
+                {[
+                  {
+                    aiChat: '네 답변 드립니다.네 답변 드립니다.네 답변 드립니다.',
+                    userChat: '궁금해이러이러한게 궁금해이러이러한게 궁금해',
+                  },
+                ].map((chat) => {
+                  return (
+                    <>
+                      <Box display={'flexDJC'} gap={16}>
+                        <ChatBox role={'ai'}>{chat?.aiChat}</ChatBox>
+                        <ChatBox>{chat?.userChat}</ChatBox>
+                      </Box>
+                      <Box display={'flexDJC'} gap={16}>
+                        <ChatBox role={'ai'}>{chat?.aiChat}</ChatBox>
+                        <ChatBox>{chat?.userChat}</ChatBox>
+                      </Box>
+                    </>
+                  );
+                })}
+                {/* {chatList.map((chat) => {
+                  return (
+                    <Box display={'flexDJC'} gap={16}>
+                      <ChatBox>{chat.aiChat}</ChatBox>
+                      <ChatBox>{chat.userChat}</ChatBox>
+                    </Box>
+                  );
+                })} */}
+                {/* {chatList.map((chat, i) => {
+                  return (
+                    <Box key={i} display={'flexDJC'} gap={16}>
+                      {!chat?.aiChat ? (
+                        <ChatBox>{chat?.userChat}</ChatBox>
+                      ) : (
+                        <>
+                          <ChatBox>{chat?.userChat}</ChatBox>
+                          <ChatBox role={'ai'}>{chat?.aiChat}</ChatBox>
+                        </>
+                      )}
+                    </Box>
+                  );
+                })} */}
+              </Box>
+            ) : (
               <>
                 <Box display={'flexCC'} textAlign={'center'} padding={'85px 15px 15px 15px'}>
                   <SvgWrapper svg={dotIcon} />
@@ -54,27 +135,22 @@ const HomePage = () => {
                     이런걸 물어 볼 수 있어요.
                   </Text>
                 </Box>
-                <Carousel onItemSelect={handleButtonClick} />
-              </> 
-            )
-          }
-            
-
-{/*     
-            <ChatBox>
-              {'안녕하세요'}
-            </ChatBox>  */}
+                <Carousel onItemSelect={handleCarouselItemClick} />
+              </>
+            )}
           </Box>
-        </Box>
-        <Box display={'flexCC'} margin={'0 0 20px 0'} gap={4}>
+        </S.ChatWrapper>
+        <Box display={'flexCC'} margin={'20px 0 20px 0'} gap={4}>
           <Input
             width={300}
             borderRadius={50}
             borderColor={'gray20'}
             backGroundColor={'gray20'}
-            placeholder={'원하는 걸 물어보세요'}
+            registerName={'chat.userChat'}
+            disabled={!selectedQuestion}
+            placeholder={selectedQuestion ? '무슨 고민이 있으신가요?' : '질문을 선택하시면 대화가 시작됩니다'}
           />
-          <SvgWrapper svg={sendDefaultIcon} onClick={() => {}} style={{ cursor: 'pointer' }} />
+          <SvgWrapper svg={sendDefaultIcon} style={{ cursor: 'pointer' }} onClick={handleClickChatSendButton} />
         </Box>
       </Container>
     </Box>
