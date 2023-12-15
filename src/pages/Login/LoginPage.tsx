@@ -1,11 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import { Button, Input } from '@UI/atoms';
 import * as S from './styled';
 import BlackMediumLogo from '@assets/logo/BlackMediumLogo.svg';
 
 const LoginPage = () => {
-  console.log('login');
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {};
-  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {};
+  const navigate = useNavigate();
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {};
+  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {};
+
   return (
     <S.Login>
       <S.WrapperTop>
@@ -32,7 +34,7 @@ const LoginPage = () => {
         </Button>
       </S.WrapperCenter>
       <S.JoinText>
-        아직 회원이 아니신가요?&nbsp;&nbsp;<S.UnderlineText href="#">회원가입</S.UnderlineText>
+        아직 회원이 아니신가요?&nbsp;&nbsp;<S.UnderlineText onClick={() => navigate('/signIn-step')}>회원가입</S.UnderlineText>
       </S.JoinText>
     </S.Login>
   );
