@@ -10,14 +10,14 @@ const Router = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 3300);
   }, []);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Frame />}>
-          <Route path="" element={<SplashPage />} />
+          {isLoading ? <Route path="" element={<SplashPage />} /> : <Route path="" element={<LoginPage />} />}
           <Route path="home" element={<HomePage />} />
           <Route path="signin-step" element={<SignInStepPage />} />
         </Route>
