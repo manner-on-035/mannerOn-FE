@@ -6,5 +6,5 @@ export const Home = styled.section`
 
 export const WrapperTop = styled.div`
   color: ${({ theme }) => theme.colors.darkgray};
-  padding: 88px 0;
+  padding: 32px 0px 58px 0px;
 `;
