@@ -54,9 +54,9 @@ const Input: React.FC<InputProps> = ({
       value={value}
       maxLength={maxLength}
       placeholder={placeholder}
+      {...(registerName && register(registerName))}
       onFocus={onFocus}
       onChange={onChange}
-      {...(registerName && register(registerName))}
     />
   );
 };
