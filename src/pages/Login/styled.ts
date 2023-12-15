@@ -5,9 +5,7 @@ export const Login = styled.section`
 `;
 
 export const WrapperTop = styled.div`
-    color: ${({theme}) => theme.colors.darkgrey};
-
-    
+  color: ${({ theme }) => theme.colors.darkgrey};
 `;
 export const ImgWrapper = styled.div`
   padding-bottom: 24px;
@@ -24,10 +22,10 @@ export const LoginSubTitle = styled.p`
 
 export const WrapperCenter = styled.div`
   padding-top: 48px;
-
-  Input {
-    margin-bottom: 12px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
 `;
 
 export const JoinText = styled.p`
