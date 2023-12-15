@@ -51,7 +51,7 @@ const HomePage = () => {
     
             <ChatBox backGroundColor={'gray'}>
               {'안녕하세요,안녕하세요, 보고서 작성에 필요한 자료 전달에 대해 문'}
-            </ChatBox> */}
+            </ChatBox> 
           </Box>
         </Box>
         <Box display={'flexCC'} margin={'0 0 20px 0'} gap={4}>
