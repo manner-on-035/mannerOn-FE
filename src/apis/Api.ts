@@ -8,7 +8,7 @@ const getHttpResponse = async <T>({ fn }: { fn: () => Promise<AxiosResponse<T>> 
     const result = await fn();
     const { status, data } = result;
     const successResponse: HTTPResponse<T> = { status, data };
-    const token: string = result.headers.authorization;
+    const token: string = result.headers.accesstoken;
 
     if (token !== undefined) {
       sessionStorage.setItem('token', token);
