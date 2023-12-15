@@ -35,8 +35,17 @@ export const JoinText = styled.p`
   margin-top: 48px;
   text-align: center;
 `;
-export const UnderlineText = styled.a`
+
+export const UnderlineText = styled.button`
+  padding: 0;
+  width: 43px;
+  height: 14px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
   font-weight: 700;
+  border-bottom: 1px solid black;
   color: ${({ theme }) => theme.colors.darkgray};
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 export const HighLight = styled.span``;
