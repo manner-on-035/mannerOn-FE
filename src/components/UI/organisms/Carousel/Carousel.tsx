@@ -48,9 +48,6 @@ const Carousel: React.FC = () => {
       {carouselItems.map((item, index) => (
           <HomeCarousel key={index} index={index} carouselItem={item} onClick={onClick} id={item}/>
         ))}
-      {/* setCarouselIndex
-        carouselItems.length 
-        <HomeCarousel  index={carouselIndex} carouselItem={carouselItems[carouselIndex]}/> */}
       </Slider>
     </div>
   );

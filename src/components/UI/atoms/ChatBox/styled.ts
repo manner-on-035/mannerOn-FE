@@ -18,6 +18,9 @@ export const ChatBox = styled.div<ChatBoxProps>`
   }};
   padding:16px;
   margin: ${({ role }) => role === 'ai' ? '0 auto 0 0' : '0 0 0 auto'};
+
+  transition: all 0.2s ease;
+
   &:focus {
   }
   &:disabled {

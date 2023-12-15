@@ -40,15 +40,15 @@ const HomePage = () => {
             </Box>
           </S.WrapperTop>
           <Box>
-            {/* <Box display={'flexCC'} textAlign={'center'} padding={'85px 15px 15px 15px'}>
+            <Box display={'flexCC'} textAlign={'center'} padding={'85px 15px 15px 15px'}>
               <SvgWrapper svg={dotIcon} />
               <Text width={200} fontSize={14} fontWeight={500} color={'gray50'}>
                 아래 카테고리를 이용할 수 있어요
               </Text>
-            </Box> */}
-            {/* <Carousel/> */}
-            {/* <HomeCarouselDots /> */}
-            {/* <ChatIcons/> */}
+            </Box>
+            <Carousel/>
+
+    
             <ChatBox backGroundColor={'gray'}>
               {'안녕하세요,안녕하세요, 보고서 작성에 필요한 자료 전달에 대해 문'}
             </ChatBox>

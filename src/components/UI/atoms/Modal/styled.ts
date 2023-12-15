@@ -26,7 +26,7 @@ interface ModalProps {
     border-radius: 8px;
 
     opacity: ${({ opacity }) => opacity};
-    transition: opacity 1s ease-in-out;
+    transition: all 0.5s ease-in-out;
 
   `;
 
