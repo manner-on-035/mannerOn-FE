@@ -1,12 +1,37 @@
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Input } from '@UI/atoms';
+import { useFormContext } from 'react-hook-form';
 import * as S from './styled';
+import { Button } from '@UI/atoms';
+import { FormInput } from '@UI/molecules';
 import BlackMediumLogo from '@assets/logo/BlackMediumLogo.svg';
+import { usePostSignInMutation } from '@apis/signInAPI/signInQuery';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {};
-  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {};
+  const { watch, getValues, setValue } = useFormContext();
+
+  const { mutate: postSignIn } = usePostSignInMutation({
+    onSuccess: (res) => {
+      setValue('loginError.id', false);
+      setValue('loginError.pw', false);
+      navigate('/home');
+    },
+    onError: (err) => {
+      setValue('loginError.id', true);
+      setValue('loginError.pw', true);
+    },
+  });
+
+  const handleLoginClick = () => {
+    const { id, pw } = getValues('login');
+    postSignIn({ email: id, password: pw });
+  };
+
+  useEffect(() => {
+    setValue('login.id', '');
+    setValue('login.pw', '');
+  }, []);
 
   return (
     <S.Login>
@@ -22,15 +47,21 @@ const LoginPage = () => {
         <S.LoginSubTitle>회원 서비스 이용을 위해 로그인 해주세요.</S.LoginSubTitle>
       </S.WrapperTop>
       <S.WrapperCenter>
-        <Input placeholder={'아이디 (이메일)'} maxLength={30} onChange={handleInputChange} onFocus={handleInputChange} />
-        <Input
-          placeholder={'비밀번호 (최소 6자리 이상, 대문자, 특수문자 포함)'}
-          maxLength={20}
-          onChange={handleInputChange}
-          onFocus={handleInputChange}
+        <FormInput
+          placeholder={'아이디 (이메일)'}
+          isError={watch('loginError.id')}
+          errorMsg={'존재하지 않는 사용자입니다.'}
+          registerName={'login.id'}
         />
-        <Button backgroundColor={'primary'} onClick={handleButtonClick}>
-          {'로그인'}
+        <FormInput
+          type={'password'}
+          placeholder={'최소 6자리 이상, 대문자, 특수문자 포함'}
+          registerName={'login.pw'}
+          isError={watch('loginError.pw')}
+          errorMsg={'비밀번호를 다시 입력해주세요.'}
+        />
+        <Button backgroundColor={'primary'} onClick={handleLoginClick}>
+          로그인
         </Button>
       </S.WrapperCenter>
       <S.JoinText>
