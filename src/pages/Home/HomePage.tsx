@@ -11,14 +11,7 @@ import { HomeCarousel, HomeCarouselDots } from '@components/Home';
 import Carousel from '@UI/organisms/Carousel';
 import {ChatIcons} from '@UI/molecules/ChatIcons';
 
-const carouselItems = [
-  { category: '매너있게', items: ['정중하게 부탁 거절', '정중하게 업무 요청', '매너있게 상대방과 다른 의견 전달'] },
-  { category: '사회생활 만렙', items: ['경조사 인사', '감사인사 전달', '명절인사 전달'] },
-  {
-    category: '프로페셔널',
-    items: ['실수 내용은 인정하고 수습, 대처방안 전달하기', '간결, 논리정연하게 수정', '프로페셔널하게 기한 연장 요청'],
-  },
-];
+
 
 const HomePage = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);

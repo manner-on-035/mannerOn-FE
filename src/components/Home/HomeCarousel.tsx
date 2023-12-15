@@ -13,7 +13,7 @@ const HomeCarousel = ({ index, carouselItem, activeBtn, setActiveBtn }: any) => 
       <Text fontSize={20} fontWeight={700} color={'darkgray'} padding={'10px'}>
         {carouselItem.category}
       </Text>
-      <HomeCarouselItem items={carouselItem.items} onItemSelect={handleItemClick} selectedItem={activeBtn} />
+      <HomeCarouselItem items={carouselItem.items} onItemSelect={} selectedItem={activeBtn} />
     </Box>
   );
 };
