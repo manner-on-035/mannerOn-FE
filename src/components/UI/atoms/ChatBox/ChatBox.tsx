@@ -17,6 +17,8 @@ const ChatBox: React.FC<ChatBoxProps> = ({
 }) => { 
   const { register } = useFormContext();
 
+  
+
   return (
     <S.ChatBox
       $isError={isError}
