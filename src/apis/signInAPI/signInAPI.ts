@@ -26,7 +26,7 @@ export default class SignInApi extends Api {
 
   public postSignIn(variable: SignInReq): Promise<HTTPResponse<SignInRes> | BusinessErrorResponse> {
     return this.post<SignInRes, SignInReq>({
-      url: API_URL.SIGNIN.SIGNUP,
+      url: API_URL.SIGNIN.SIGNIN,
       data: variable,
     });
   }
