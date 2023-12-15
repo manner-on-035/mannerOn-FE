@@ -4,27 +4,20 @@ interface ChatBoxProps {
   $borderRadius: number;
   $backGroundColor?: string;
   color?: string;
+  role?: 'user' | 'ai';
 }
 export const ChatBox = styled.div<ChatBoxProps>`
   ${({theme}) => theme.fonts.body2_medium};
   max-width: 280px;
   border-radius: 16px;
-  background-color:${({ theme, $backGroundColor}) => {
-    if($backGroundColor === "secondary"){
-      return theme.colors.secondary;
-    }else if($backGroundColor === "gray"){
-      return theme.colors.gray20;
-    }
+  background-color:${({ theme, role}) => {
+    return role === 'ai'? theme.colors.gray20 : theme.colors.secondary
   }};
-  color:${({ theme, $backGroundColor}) => {
-    if($backGroundColor === "secondary"){
-      return theme.colors.white;
-    }else if($backGroundColor === "gray"){
-      return theme.colors.darkgrey;
-    }
+  color:${({ theme, role}) => {
+    return role === 'ai'? theme.colors.darkgrey : theme.colors.white
   }};
   padding:16px;
-
+  margin: ${({ role }) => role === 'ai' ? '0 auto 0 0' : '0 0 0 auto'};
   &:focus {
   }
   &:disabled {

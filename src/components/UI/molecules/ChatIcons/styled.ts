@@ -8,7 +8,7 @@ interface ChatIconsProps {
   }
   export const ChatIcons = styled.div<ChatIconsProps>`
     ${({theme}) => theme.fonts.body2_medium};
-    padding:2px;
+    padding: 12px 2px 0px 2px;
     display:flex;
     &:focus {
     }
