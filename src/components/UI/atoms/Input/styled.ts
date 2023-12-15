@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 interface InputProps {
   width: number;
   height: number;
@@ -37,12 +38,13 @@ export const Input = styled.input<InputProps>`
     }};
   }
   &:focus {
+    outline: none;
     border: ${({ $isError, $borderColorOnFocus, theme }) => {
       if ($isError) {
-        return theme.colors.negative;
+        return `1px solid ${theme.colors.negative}`;
       } else if ($borderColorOnFocus) {
-        return theme.colors.darkgray;
-      }
+        return `1px solid ${theme.colors[`${$borderColorOnFocus}`]}`;
+      } else return `1px solid ${theme.colors.gray30}`;
     }};
   }
   &:disabled {
