@@ -20,6 +20,7 @@ const Router = () => {
           {isLoading ? <Route path="" element={<SplashPage />} /> : <Route path="" element={<LoginPage />} />}
           <Route path="home" element={<HomePage />} />
           <Route path="signin-step" element={<SignInStepPage />} />
+          <Route path="*" element={<LoginPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
