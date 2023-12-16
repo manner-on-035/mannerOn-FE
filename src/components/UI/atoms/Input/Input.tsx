@@ -13,13 +13,15 @@ export interface InputProps {
   placeholder?: string;
   backGroundColor?: string;
   borderColorOnFocus?: string;
+  registerName?: string;
   type?: string;
   value?: string;
+  disabled?: boolean;
   maxLength?: number;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  onFocus?: React.FocusEventHandler<HTMLInputElement>;
   children?: React.ReactNode;
-  registerName?: string;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -27,18 +29,19 @@ const Input: React.FC<InputProps> = ({
   width = 328,
   height = 48,
   borderColor,
-  fontSize = 14,
   isError = false,
   borderRadius = 4,
+  borderColorOnFocus,
   backGroundColor = 'white',
-  borderColorOnFocus = 'gray',
   value,
+  disabled,
   maxLength,
   placeholder,
   type = 'text',
   registerName,
-  onChange,
   onFocus,
+  onChange,
+  onKeyDown,
 }) => {
   const { register } = useFormContext();
 
@@ -55,11 +58,13 @@ const Input: React.FC<InputProps> = ({
       $borderColorOnFocus={borderColorOnFocus}
       type={type}
       value={value}
+      disabled={disabled}
       maxLength={maxLength}
       placeholder={placeholder}
       {...(registerName && register(registerName))}
       onFocus={onFocus}
       onChange={onChange}
+      onKeyDown={onKeyDown}
     />
   );
 };

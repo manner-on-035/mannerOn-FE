@@ -10,7 +10,8 @@
       "@hooks/*": ["hooks/*"],
       "@utils/*": ["utils/*"],
       "@styles/*": ["styles/*"],
-      "@shared/*": ["shared/*"]
+      "@shared/*": ["shared/*"],
+      "@libs/*": ["libs/*"]
     }
   }
 }
