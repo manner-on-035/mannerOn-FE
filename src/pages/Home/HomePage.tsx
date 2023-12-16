@@ -23,12 +23,27 @@ interface SelectedQuestion {
 const HomePage = () => {
   const { getValues, setValue } = useFormContext();
   const [selectedQuestion, setSelectedQuestion] = useState<string>('');
-  const [seletedPrompt, setSelectedPrompt] = useState<SelectedQuestion>({ question: '', prompt: '', chat: '' });
+  const [seletedPrompt, setSelectedPrompt] = useState<SelectedQuestion>();
   const [chatList, setChatList] = useState<{ aiChat: string; userChat: string }[]>([]);
+  const [currentChatRoomId, setCurrentChatRoomId] = useState<number>(0);
 
   const { mutate: postChatStart } = usePostChatStartMutation({
     onSuccess: (res) => {
       console.log('chat start success =>', res);
+      const chat = getValues('chat');
+      const { data } = res;
+      setCurrentChatRoomId(data.chatroomId);
+      if (chat && getValues('chat.userChat')) {
+        setChatList((prev) => {
+          return [...prev, { aiChat: data.content, userChat: getValues('chat.userChat') }];
+        });
+      }
+    },
+  });
+
+  const { mutate: postChat } = usePostChatMutation({
+    onSuccess: (res) => {
+      console.log('chat success =>', res);
       const chat = getValues('chat');
       const { data } = res;
       if (chat && getValues('chat.userChat')) {
@@ -48,6 +63,7 @@ const HomePage = () => {
     if (selectedQuestion && chat && getValues('chat.userChat')) {
       const { userChat } = getValues('chat');
       // API 호출
+      postChat({ chatroomId: currentChatRoomId, category: seletedPrompt?.question as string, chat: userChat });
       setChatList((prev) => {
         return [...prev, { aiChat: '', userChat }];
       });
@@ -60,6 +76,7 @@ const HomePage = () => {
       const selectedQuestionItem = CHAT_PROMPT.QUESTION.find((item) => {
         if (item.question === selectedQuestion) return item;
       });
+
       setSelectedPrompt(selectedQuestionItem as SelectedQuestion);
     }
   }, [selectedQuestion]);
@@ -67,6 +84,9 @@ const HomePage = () => {
   useEffect(() => {
     if (seletedPrompt?.prompt) {
       postChatStart({ category: seletedPrompt?.question, chat: seletedPrompt?.prompt });
+      setChatList((prev) => {
+        return [...prev, { aiChat: '', userChat: seletedPrompt?.chat }];
+      });
     }
   }, [seletedPrompt]);
 
@@ -89,34 +109,7 @@ const HomePage = () => {
           <Box>
             {selectedQuestion ? (
               <Box display={'flexDJC'} gap={16}>
-                {[
-                  {
-                    aiChat: '네 답변 드립니다.네 답변 드립니다.네 답변 드립니다.',
-                    userChat: '궁금해이러이러한게 궁금해이러이러한게 궁금해',
-                  },
-                ].map((chat) => {
-                  return (
-                    <>
-                      <Box display={'flexDJC'} gap={16}>
-                        <ChatBox role={'ai'}>{chat?.aiChat}</ChatBox>
-                        <ChatBox>{chat?.userChat}</ChatBox>
-                      </Box>
-                      <Box display={'flexDJC'} gap={16}>
-                        <ChatBox role={'ai'}>{chat?.aiChat}</ChatBox>
-                        <ChatBox>{chat?.userChat}</ChatBox>
-                      </Box>
-                    </>
-                  );
-                })}
-                {/* {chatList.map((chat) => {
-                  return (
-                    <Box display={'flexDJC'} gap={16}>
-                      <ChatBox>{chat.aiChat}</ChatBox>
-                      <ChatBox>{chat.userChat}</ChatBox>
-                    </Box>
-                  );
-                })} */}
-                {/* {chatList.map((chat, i) => {
+                {chatList.map((chat, i) => {
                   return (
                     <Box key={i} display={'flexDJC'} gap={16}>
                       {!chat?.aiChat ? (
@@ -129,7 +122,7 @@ const HomePage = () => {
                       )}
                     </Box>
                   );
-                })} */}
+                })}
               </Box>
             ) : (
               <>

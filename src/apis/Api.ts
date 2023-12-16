@@ -65,7 +65,7 @@ export default class Api {
       if (headers === undefined) {
         headers = {} as AxiosRequestHeaders;
       }
-      headers.authorization = setToken as string;
+      headers.accesstoken = setToken as string;
     }
     const fn = () => this.axiosInstance.get(url, { headers, params, ...options });
     return getHttpResponse<T>({ fn });
