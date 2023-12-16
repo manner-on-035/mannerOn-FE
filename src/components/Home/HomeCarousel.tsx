@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Text } from '@UI/atoms';
 import HomeCarouselItem from './HomeCarouselItem';
 
