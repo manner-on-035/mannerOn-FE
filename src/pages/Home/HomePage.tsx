@@ -4,7 +4,7 @@ import { CHAT_PROMPT } from '@libs/prompt';
 import * as S from './styled';
 import { Container } from '@UI/template';
 import Carousel from '@UI/organisms/Carousel';
-import { Box, SvgWrapper, Text, Input, ChatBox } from '@UI/atoms';
+import { Box, SvgWrapper, Text, Input, ChatBox, Modal } from '@UI/atoms';
 import gnbIcon from '@assets/icon/gnbIcon.svg';
 import dotIcon from '@assets/icon/dotIcon.svg';
 import newChatIcon from '@assets/icon/newChatIcon.svg';
@@ -23,11 +23,9 @@ const HomePage = () => {
   const { getValues, setValue } = useFormContext();
   const [selectedQuestion, setSelectedQuestion] = useState<string>('');
   const [seletedPrompt, setSelectedPrompt] = useState<SelectedQuestion>();
-  const [chatList, setChatList] = useState<{ aiChat: string; userChat: string }[]>([
-    { aiChat: '복사 테스트', userChat: '질문 있어요' },
-  ]);
+  const [chatList, setChatList] = useState<{ aiChat: string; userChat: string; chatId: number }[]>([]);
   const [currentChatRoomId, setCurrentChatRoomId] = useState<number>(0);
-  const [currentChatId, setCurrentChatId] = useState<number>(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { mutate: postChatStart } = usePostChatStartMutation({
     onSuccess: (res) => {
@@ -35,10 +33,9 @@ const HomePage = () => {
       const chat = getValues('chat');
       const { data } = res;
       setCurrentChatRoomId(data.chatroomId);
-      setCurrentChatId(data.chatId);
       if (chat && getValues('chat.userChat')) {
         setChatList((prev) => {
-          return [...prev, { aiChat: data.content, userChat: getValues('chat.userChat') }];
+          return [...prev, { aiChat: data.content, userChat: getValues('chat.userChat'), chatId: data.chatId }];
         });
       }
     },
@@ -49,10 +46,9 @@ const HomePage = () => {
       console.log('chat success =>', res);
       const chat = getValues('chat');
       const { data } = res;
-      setCurrentChatId(data.chatId);
       if (chat && getValues('chat.userChat')) {
         setChatList((prev) => {
-          return [...prev, { aiChat: data.content, userChat: getValues('chat.userChat') }];
+          return [...prev, { aiChat: data.content, userChat: getValues('chat.userChat'), chatId: data.chatId }];
         });
       }
     },
@@ -64,10 +60,9 @@ const HomePage = () => {
     const chat = getValues('chat');
     if (selectedQuestion && chat && getValues('chat.userChat')) {
       const { userChat } = getValues('chat');
-      // API 호출
       postChat({ chatroomId: currentChatRoomId, category: seletedPrompt?.question as string, chat: userChat });
       setChatList((prev) => {
-        return [...prev, { aiChat: '', userChat }];
+        return [...prev, { aiChat: '', userChat, chatId: 0 }];
       });
       setValue('chat.userChat', '');
     }
@@ -87,7 +82,7 @@ const HomePage = () => {
     if (seletedPrompt?.prompt) {
       postChatStart({ category: seletedPrompt?.question, chat: seletedPrompt?.prompt });
       setChatList((prev) => {
-        return [...prev, { aiChat: '', userChat: seletedPrompt?.chat }];
+        return [...prev, { aiChat: '', userChat: seletedPrompt?.chat, chatId: 0 }];
       });
     }
   }, [seletedPrompt]);
@@ -95,9 +90,10 @@ const HomePage = () => {
   return (
     <Box height={'100vh'}>
       <Box height={50} display={'flexSBC'}>
-        <SvgWrapper svg={gnbIcon} onClick={() => {}} style={{ cursor: 'pointer' }} />
+        <SvgWrapper svg={gnbIcon} onClick={() => setIsModalOpen(true)} style={{ cursor: 'pointer' }} />
         <SvgWrapper svg={newChatIcon} onClick={() => {}} style={{ cursor: 'pointer' }} />
       </Box>
+      {isModalOpen && <Modal modalText={'히스토리는 곧 만나볼 수 있어요!'} setModalOpen={setIsModalOpen} />}
       <Container>
         <S.ChatWrapper>
           <S.WrapperTop>
@@ -119,7 +115,7 @@ const HomePage = () => {
                       ) : (
                         <>
                           <ChatBox>{chat?.userChat}</ChatBox>
-                          <ChatBox currentChatId={currentChatId} role={'ai'}>
+                          <ChatBox currentChatId={chat?.chatId} role={'ai'}>
                             {chat?.aiChat}
                           </ChatBox>
                         </>
