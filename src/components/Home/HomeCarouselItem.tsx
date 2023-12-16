@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import * as S from './styled';
 
 interface HomeCarouselItemProps {

@@ -18,7 +18,7 @@ export interface ChatIconProps {
   currentChatId?: number;
 }
 
-const ChatIcons: React.FC<ChatIconProps> = ({ text, onChange, onClick, currentChatId }) => {
+const ChatIcons: React.FC<ChatIconProps> = ({ text, onChange, currentChatId }) => {
   const [copyClicked, setcopyClicked] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [likeIconClicked, setLikeIconClicked] = useState(false);
