@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useFormContext } from 'react-hook-form';
 import { CHAT_PROMPT } from '@libs/prompt';
 import * as S from './styled';
-import { Container } from '@UI/template';
-import Carousel from '@UI/organisms/Carousel';
-import { Box, SvgWrapper, Text, Input, ChatBox, Modal } from '@UI/atoms';
 import gnbIcon from '@assets/icon/gnbIcon.svg';
 import dotIcon from '@assets/icon/dotIcon.svg';
 import newChatIcon from '@assets/icon/newChatIcon.svg';
 import blackSmallLogo from '@assets/logo/BlackSmallLogo.svg';
 import sendDefaultIcon from '@assets/icon/sendDefaultIcon.svg';
+import { Container } from '@UI/template';
+import Carousel from '@UI/organisms/Carousel';
+import { Box, SvgWrapper, Text, Input, ChatBox, Modal } from '@UI/atoms';
 import { usePostChatStartMutation, usePostChatMutation } from '@apis/chat/chatQuery';
-
 
 interface SelectedQuestion {
   question: string;
@@ -20,6 +20,7 @@ interface SelectedQuestion {
 }
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const { getValues, setValue } = useFormContext();
   const [selectedQuestion, setSelectedQuestion] = useState<string>('');
   const [seletedPrompt, setSelectedPrompt] = useState<SelectedQuestion>();
@@ -69,11 +70,18 @@ const HomePage = () => {
   };
 
   useEffect(() => {
+    const handlePopstate = () => window.history.pushState(null, '', window.location.href);
+    window.history.pushState(null, '', window.location.href);
+    window.addEventListener('popstate', handlePopstate);
+    window.onpopstate = () => navigate('/');
+    return () => window.removeEventListener('popstate', handlePopstate);
+  }, []);
+
+  useEffect(() => {
     if (selectedQuestion) {
       const selectedQuestionItem = CHAT_PROMPT.QUESTION.find((item) => {
         if (item.question === selectedQuestion) return item;
       });
-
       setSelectedPrompt(selectedQuestionItem as SelectedQuestion);
     }
   }, [selectedQuestion]);
