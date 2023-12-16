@@ -69,6 +69,14 @@ const HomePage = () => {
     }
   };
 
+  const handleClickNewChatButton = () => {
+    setChatList([]);
+    setSelectedQuestion('');
+    setCurrentChatRoomId(0);
+    setSelectedPrompt(undefined);
+    setValue('chat.userChat', '');
+  };
+
   useEffect(() => {
     const handlePopstate = () => window.history.pushState(null, '', window.location.href);
     window.history.pushState(null, '', window.location.href);
@@ -98,7 +106,7 @@ const HomePage = () => {
   return (
     <Box height={'100vh'}>
       <Box height={50} display={'flexSBC'}>
-        <SvgWrapper svg={gnbIcon} onClick={() => setIsModalOpen(true)} style={{ cursor: 'pointer' }} />
+        <SvgWrapper svg={gnbIcon} onClick={handleClickNewChatButton} style={{ cursor: 'pointer' }} />
         <SvgWrapper svg={newChatIcon} onClick={() => {}} style={{ cursor: 'pointer' }} />
       </Box>
       {isModalOpen && <Modal modalText={'히스토리는 곧 만나볼 수 있어요!'} setModalOpen={setIsModalOpen} />}
