@@ -8,6 +8,12 @@ const API_URL = {
     CHAT_START: '/api/chats/start' as const,
     CHAT: (chatroomId: number) => `/api/chats/${chatroomId}` as const,
   },
+  COPY: {
+    COPY: (chatId: number) => `/api/chats/copy/${chatId}` as const,
+  },
+  FEEDBACK: {
+    FEEDBACK: (chatId: number) => `/api/chats/feedback/${chatId}` as const,
+  },
 };
 
 export default API_URL;
