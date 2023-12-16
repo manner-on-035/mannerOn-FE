@@ -8,23 +8,19 @@ export const CarouselItem = styled.div<CarouselItemProps>`
   display: block;
   border-radius: 20px;
   width: fit-content;
-  // background-color: ${({ theme }) => theme.colors.gray20};
   padding: 8px 18px;
   margin: 4px;
   cursor: pointer;
-  background-color: ${({ theme }) => (theme.colors.gray20 )};
+  background-color: ${({ theme }) => theme.colors.gray20};
   &:hover {
-    background-color: ${({ selected, theme }) => (selected ? theme.colors.primary: theme.colors.gray20 )};
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.white};
   }
-  `;
+`;
 
 export const CarouselText = styled.p<CarouselItemProps>`
   ${({ theme }) => theme.fonts.body2_medium};
-  color: ${({ theme }) => (theme.colors.darkgrey )};
-  &:hover {
-    color: ${({ selected, theme }) => (selected ? theme.colors.white: theme.colors.darkgrey )};
-  }
- 
+  color: ${({ theme }) => theme.colors.darkgrey};
 `;
 
 export const CarouselDots = styled.div`
