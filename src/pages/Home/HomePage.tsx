@@ -4,7 +4,7 @@ import { CHAT_PROMPT } from '@libs/prompt';
 import * as S from './styled';
 import { Container } from '@UI/template';
 import Carousel from '@UI/organisms/Carousel';
-import { Box, SvgWrapper, Text, Input, ChatBox } from '@UI/atoms';
+import { Box, SvgWrapper, Text, Input, ChatBox, Modal } from '@UI/atoms';
 import gnbIcon from '@assets/icon/gnbIcon.svg';
 import dotIcon from '@assets/icon/dotIcon.svg';
 import newChatIcon from '@assets/icon/newChatIcon.svg';
@@ -23,11 +23,10 @@ const HomePage = () => {
   const { getValues, setValue } = useFormContext();
   const [selectedQuestion, setSelectedQuestion] = useState<string>('');
   const [seletedPrompt, setSelectedPrompt] = useState<SelectedQuestion>();
-  const [chatList, setChatList] = useState<{ aiChat: string; userChat: string }[]>([
-    { aiChat: '복사 테스트', userChat: '질문 있어요' },
-  ]);
+  const [chatList, setChatList] = useState<{ aiChat: string; userChat: string }[]>([]);
   const [currentChatRoomId, setCurrentChatRoomId] = useState<number>(0);
   const [currentChatId, setCurrentChatId] = useState<number>(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { mutate: postChatStart } = usePostChatStartMutation({
     onSuccess: (res) => {
@@ -95,9 +94,10 @@ const HomePage = () => {
   return (
     <Box height={'100vh'}>
       <Box height={50} display={'flexSBC'}>
-        <SvgWrapper svg={gnbIcon} onClick={() => {}} style={{ cursor: 'pointer' }} />
+        <SvgWrapper svg={gnbIcon} onClick={() => setIsModalOpen(true)} style={{ cursor: 'pointer' }} />
         <SvgWrapper svg={newChatIcon} onClick={() => {}} style={{ cursor: 'pointer' }} />
       </Box>
+      {isModalOpen && <Modal modalText={'히스토리는 곧 만나볼 수 있어요!'} setModalOpen={setIsModalOpen} />}
       <Container>
         <S.ChatWrapper>
           <S.WrapperTop>
