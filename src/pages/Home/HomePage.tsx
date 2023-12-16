@@ -11,6 +11,7 @@ import newChatIcon from '@assets/icon/newChatIcon.svg';
 import blackSmallLogo from '@assets/logo/BlackSmallLogo.svg';
 import sendDefaultIcon from '@assets/icon/sendDefaultIcon.svg';
 import { usePostChatStartMutation, usePostChatMutation } from '@apis/chat/chatQuery';
+import { usePutFeedbackMutation } from '@apis/feedback/feedbackQuery';
 
 interface SelectedQuestion {
   question: string;
@@ -22,8 +23,11 @@ const HomePage = () => {
   const { getValues, setValue } = useFormContext();
   const [selectedQuestion, setSelectedQuestion] = useState<string>('');
   const [seletedPrompt, setSelectedPrompt] = useState<SelectedQuestion>();
-  const [chatList, setChatList] = useState<{ aiChat: string; userChat: string }[]>([]);
+  const [chatList, setChatList] = useState<{ aiChat: string; userChat: string }[]>([
+    { aiChat: '복사 테스트', userChat: '질문 있어요' },
+  ]);
   const [currentChatRoomId, setCurrentChatRoomId] = useState<number>(0);
+  const [currentChatId, setCurrentChatId] = useState<number>(0);
 
   const { mutate: postChatStart } = usePostChatStartMutation({
     onSuccess: (res) => {
@@ -31,6 +35,7 @@ const HomePage = () => {
       const chat = getValues('chat');
       const { data } = res;
       setCurrentChatRoomId(data.chatroomId);
+      setCurrentChatId(data.chatId);
       if (chat && getValues('chat.userChat')) {
         setChatList((prev) => {
           return [...prev, { aiChat: data.content, userChat: getValues('chat.userChat') }];
@@ -44,6 +49,7 @@ const HomePage = () => {
       console.log('chat success =>', res);
       const chat = getValues('chat');
       const { data } = res;
+      setCurrentChatId(data.chatId);
       if (chat && getValues('chat.userChat')) {
         setChatList((prev) => {
           return [...prev, { aiChat: data.content, userChat: getValues('chat.userChat') }];
@@ -113,7 +119,9 @@ const HomePage = () => {
                       ) : (
                         <>
                           <ChatBox>{chat?.userChat}</ChatBox>
-                          <ChatBox role={'ai'}>{chat?.aiChat}</ChatBox>
+                          <ChatBox currentChatId={currentChatId} role={'ai'}>
+                            {chat?.aiChat}
+                          </ChatBox>
                         </>
                       )}
                     </Box>

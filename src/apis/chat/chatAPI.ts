@@ -21,4 +21,6 @@ export default class ChatInApi extends Api {
       data: { category: variable?.category, chat: variable?.chat },
     });
   }
+
+
 }
