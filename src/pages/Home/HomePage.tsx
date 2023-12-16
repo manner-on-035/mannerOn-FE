@@ -11,6 +11,8 @@ import newChatIcon from '@assets/icon/newChatIcon.svg';
 import blackSmallLogo from '@assets/logo/BlackSmallLogo.svg';
 import sendDefaultIcon from '@assets/icon/sendDefaultIcon.svg';
 import { usePostChatStartMutation, usePostChatMutation } from '@apis/chat/chatQuery';
+import { usePutCopyMutation } from '@apis/copy/copyQuery';
+import { usePutFeedbackMutation } from '@apis/feedback/feedbackQuery';
 
 interface SelectedQuestion {
   question: string;
@@ -36,6 +38,8 @@ const HomePage = () => {
       }
     },
   });
+
+
 
   const handleCarouselItemClick = (item: string) => setSelectedQuestion(item);
 

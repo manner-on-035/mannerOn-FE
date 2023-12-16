@@ -26,14 +26,16 @@ const ChatIcons: React.FC<ChatIconProps> = ({
   const [dislikeIconClicked, setDislikeIconClicked] = useState(false);
 
 
+
+
   let textString: string | undefined;
-if (typeof text === 'string') {
-  textString = text;
-} else if (React.isValidElement(text)) {
-  textString = ReactDOMServer.renderToStaticMarkup(text);
-} else {
-  textString = undefined;
-}
+    if (typeof text === 'string') {
+      textString = text;
+    } else if (React.isValidElement(text)) {
+      textString = ReactDOMServer.renderToStaticMarkup(text);
+    } else {
+      textString = undefined;
+    }
 
   const handleClick = () => {
     setcopyClicked(!copyClicked);

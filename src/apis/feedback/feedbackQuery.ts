@@ -7,7 +7,7 @@ import FeedbackApi from './feedbackAPI';
 
 const feedbackApi = new FeedbackApi();
 
-export const usePutCopytMutation = (
+export const usePutFeedbackMutation = (
     chatroomId: number,
     useMutationOptions?: UseMutationOptions<HTTPResponse<IconRes> | BusinessErrorResponse, AxiosError, FeedbackReq, unknown>,
   ) => {

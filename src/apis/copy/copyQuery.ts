@@ -7,7 +7,7 @@ import CopyApi from './copyAPI';
 
 const copyApi = new CopyApi();
 
-export const usePutCopytMutation = (
+export const usePutCopyMutation = (
     chatroomId: number,
     useMutationOptions?: UseMutationOptions<HTTPResponse<IconRes> | BusinessErrorResponse, AxiosError, unknown>,
   ) => {
