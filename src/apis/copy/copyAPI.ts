@@ -8,10 +8,9 @@ export default class copyApi extends Api {
     super();
   }
 
-  public putCopy(chatroomId: number): Promise<HTTPResponse<IconRes> | BusinessErrorResponse> {
+  public putCopyMessage(chatId: number): Promise<HTTPResponse<IconRes> | BusinessErrorResponse> {
     return this.put<IconRes>({
-      url: API_URL.COPY.COPY(chatroomId),
+      url: API_URL.COPY.COPY(chatId),
     });
   }
-
 }
