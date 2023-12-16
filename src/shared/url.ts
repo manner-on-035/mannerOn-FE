@@ -9,10 +9,10 @@ const API_URL = {
     CHAT: (chatroomId: number) => `/api/chats/${chatroomId}` as const,
   },
   COPY: {
-    COPY: (chatroomId: number) => `/api/chats/copy/${chatroomId}` as const,
+    COPY: (chatId: number) => `/api/chats/copy/${chatId}` as const,
   },
   FEEDBACK: {
-    FEEDBACK: (chatroomId: number) => `/api/chats/feedback/${chatroomId}` as const,
+    FEEDBACK: (chatId: number) => `/api/chats/feedback/${chatId}` as const,
   },
 };
 
