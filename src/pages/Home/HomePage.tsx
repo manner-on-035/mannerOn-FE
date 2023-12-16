@@ -11,7 +11,7 @@ import newChatIcon from '@assets/icon/newChatIcon.svg';
 import blackSmallLogo from '@assets/logo/BlackSmallLogo.svg';
 import sendDefaultIcon from '@assets/icon/sendDefaultIcon.svg';
 import { usePostChatStartMutation, usePostChatMutation } from '@apis/chat/chatQuery';
-import { usePutFeedbackMutation } from '@apis/feedback/feedbackQuery';
+
 
 interface SelectedQuestion {
   question: string;

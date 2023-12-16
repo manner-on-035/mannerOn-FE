@@ -7,6 +7,9 @@ import CopyIcon from '@assets/icon/copyIcon';
 import LikeIcon from '@assets/icon/likeIcon';
 import DislikeIcon from '@assets/icon/dislikeIcon';
 import { usePutCopyMessageMutation } from '@apis/copy/copyQuery';
+import { usePutFeedbackMutation } from '@apis/feedback/feedbackQuery';
+import { IconRes } from 'types/feedback';
+import { BusinessErrorResponse, HTTPResponse } from 'types/common';
 
 export interface ChatIconProps {
   text?: string | undefined;
@@ -30,6 +33,29 @@ const ChatIcons: React.FC<ChatIconProps> = ({ text, onChange, onClick, currentCh
     },
   });
 
+  const { mutate: putFeedback } = usePutFeedbackMutation(currentChatId ?? 0, {
+    onSuccess: (res: HTTPResponse<IconRes> | BusinessErrorResponse) => {
+      console.log('feedback message success =>', res);
+    },
+    onError: (err: Error) => {
+      console.log('feedback message Error =>', err);
+    },
+  });
+
+  // let putFeedback: any;
+  // if (currentChatId !== undefined) {
+  //   putFeedback = putFeedbackTemp;
+  // }
+
+//   const { mutate: putFeedback } = usePutFeedbackMutation(currentChatId, {
+//     onSuccess: (res: IconRes)=> {
+//       console.log('feedback message success =>', res);
+//     },
+//     onError: (err): void => {
+//       console.log('feedback message Error =>', err);
+//     },
+//   })
+
   let textString: string | undefined;
   if (typeof text === 'string') {
     textString = text;
@@ -44,17 +70,21 @@ const ChatIcons: React.FC<ChatIconProps> = ({ text, onChange, onClick, currentCh
     if (!copyClicked) {
       showModal();
       putCopyMessage({ chatId: currentChatId as number });
+    }else{
+      console.error('currentChatId is undefined');
     }
   };
 
   const handleLikeIconClick = () => {
     setLikeIconClicked(!likeIconClicked);
     setDislikeIconClicked(false);
+    putFeedback({ feedback: 1});
   };
 
   const handleDislikeIconClick = () => {
     setDislikeIconClicked(!dislikeIconClicked);
     setLikeIconClicked(false);
+    putFeedback({ feedback: -1});
   };
 
   const showModal = () => {
@@ -80,4 +110,5 @@ const ChatIcons: React.FC<ChatIconProps> = ({ text, onChange, onClick, currentCh
     </S.ChatIcons>
   );
 };
+
 export default ChatIcons;

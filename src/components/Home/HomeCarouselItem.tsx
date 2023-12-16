@@ -19,7 +19,7 @@ const HomeCarouselItem: React.FC<HomeCarouselItemProps> = ({ items, onItemSelect
             selected={item === selectedItem}
           >
             <S.CarouselText selected={item === selectedItem}>
-             {item}
+            {item}
             </S.CarouselText>
           </S.CarouselItem>
         );
