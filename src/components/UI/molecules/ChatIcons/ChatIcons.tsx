@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import * as S from './styled';
-import { Modal } from '@UI/atoms/Modal';
+import { Modal } from '@UI/atoms';
 import CopyIcon from '@assets/icon/copyIcon';
 import LikeIcon from '@assets/icon/likeIcon';
 import DislikeIcon from '@assets/icon/dislikeIcon';
@@ -99,7 +99,7 @@ const ChatIcons: React.FC<ChatIconProps> = ({ text, onChange, onClick, currentCh
             <CopyIcon isClicked={copyClicked} />
           </div>
         </CopyToClipboard>
-        {modalOpen && <Modal setModalOpen={setModalOpen} />}
+        {modalOpen && <Modal type={'copy'} modalText={'메세지를 복사했어요.'} setModalOpen={setModalOpen} />}
       </S.StyledCopyIcon>
       <S.StyledLikeIcon>
         <LikeIcon isClicked={likeIconClicked} onClick={handleLikeIconClick} />
