@@ -8,14 +8,14 @@ import FeedbackApi from './feedbackAPI';
 const feedbackApi = new FeedbackApi();
 
 export const usePutFeedbackMutation = (
-    chatroomId: number,
+    chatId: number,
     useMutationOptions?: UseMutationOptions<HTTPResponse<IconRes> | BusinessErrorResponse, AxiosError, FeedbackReq, unknown>,
   ) => {
     const mutationKey = KEY.FEEDBACK.FEEDBACK_PUT;
     const result = useMutation({
       mutationKey,
       mutationFn: async (variable: FeedbackReq) => {
-        return await feedbackApi.putFeedback(chatroomId,variable);
+        return await feedbackApi.putFeedback(chatId, variable);
       },
       ...useMutationOptions,
     });
