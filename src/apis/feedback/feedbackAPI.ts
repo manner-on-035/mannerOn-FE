@@ -8,7 +8,7 @@ export default class feedbackApi extends Api {
     super();
   }
 
-  public putFeedback(chatId: number, variable: FeedbackReq): Promise<HTTPResponse<IconRes> | BusinessErrorResponse> {
+  public putFeedback(chatId: number, variable: FeedbackReq= {feedback:0}): Promise<HTTPResponse<IconRes> | BusinessErrorResponse> {
     
     return this.put<IconRes, FeedbackReq>({
       url: API_URL.FEEDBACK.FEEDBACK(chatId),

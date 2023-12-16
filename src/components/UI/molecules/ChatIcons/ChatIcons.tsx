@@ -33,7 +33,8 @@ const ChatIcons: React.FC<ChatIconProps> = ({ text, onChange, onClick, currentCh
     },
   });
 
-  const { mutate: putFeedback } = usePutFeedbackMutation(currentChatId ?? 0, {
+
+  const { mutate: putFeedback} = usePutFeedbackMutation(currentChatId ?? 0, {
     onSuccess: (res: HTTPResponse<IconRes> | BusinessErrorResponse) => {
       console.log('feedback message success =>', res);
     },
@@ -42,19 +43,6 @@ const ChatIcons: React.FC<ChatIconProps> = ({ text, onChange, onClick, currentCh
     },
   });
 
-  // let putFeedback: any;
-  // if (currentChatId !== undefined) {
-  //   putFeedback = putFeedbackTemp;
-  // }
-
-//   const { mutate: putFeedback } = usePutFeedbackMutation(currentChatId, {
-//     onSuccess: (res: IconRes)=> {
-//       console.log('feedback message success =>', res);
-//     },
-//     onError: (err): void => {
-//       console.log('feedback message Error =>', err);
-//     },
-//   })
 
   let textString: string | undefined;
   if (typeof text === 'string') {
@@ -78,13 +66,21 @@ const ChatIcons: React.FC<ChatIconProps> = ({ text, onChange, onClick, currentCh
   const handleLikeIconClick = () => {
     setLikeIconClicked(!likeIconClicked);
     setDislikeIconClicked(false);
-    putFeedback({ feedback: 1});
+    if(!likeIconClicked){
+      putFeedback({ feedback: 1});
+    }else if(likeIconClicked){
+      putFeedback({ feedback: -1});
+    }
   };
 
   const handleDislikeIconClick = () => {
     setDislikeIconClicked(!dislikeIconClicked);
     setLikeIconClicked(false);
-    putFeedback({ feedback: -1});
+    if(!dislikeIconClicked){
+      putFeedback({ feedback: -1});
+    }else if (dislikeIconClicked){
+      putFeedback({ feedback: 1});
+    }
   };
 
   const showModal = () => {
