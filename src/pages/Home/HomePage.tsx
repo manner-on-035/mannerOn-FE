@@ -23,9 +23,8 @@ const HomePage = () => {
   const { getValues, setValue } = useFormContext();
   const [selectedQuestion, setSelectedQuestion] = useState<string>('');
   const [seletedPrompt, setSelectedPrompt] = useState<SelectedQuestion>();
-  const [chatList, setChatList] = useState<{ aiChat: string; userChat: string }[]>([]);
+  const [chatList, setChatList] = useState<{ aiChat: string; userChat: string; chatId: number }[]>([]);
   const [currentChatRoomId, setCurrentChatRoomId] = useState<number>(0);
-  const [currentChatId, setCurrentChatId] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { mutate: postChatStart } = usePostChatStartMutation({
@@ -34,10 +33,9 @@ const HomePage = () => {
       const chat = getValues('chat');
       const { data } = res;
       setCurrentChatRoomId(data.chatroomId);
-      setCurrentChatId(data.chatId);
       if (chat && getValues('chat.userChat')) {
         setChatList((prev) => {
-          return [...prev, { aiChat: data.content, userChat: getValues('chat.userChat') }];
+          return [...prev, { aiChat: data.content, userChat: getValues('chat.userChat'), chatId: data.chatId }];
         });
       }
     },
@@ -48,10 +46,9 @@ const HomePage = () => {
       console.log('chat success =>', res);
       const chat = getValues('chat');
       const { data } = res;
-      setCurrentChatId(data.chatId);
       if (chat && getValues('chat.userChat')) {
         setChatList((prev) => {
-          return [...prev, { aiChat: data.content, userChat: getValues('chat.userChat') }];
+          return [...prev, { aiChat: data.content, userChat: getValues('chat.userChat'), chatId: data.chatId }];
         });
       }
     },
@@ -63,10 +60,9 @@ const HomePage = () => {
     const chat = getValues('chat');
     if (selectedQuestion && chat && getValues('chat.userChat')) {
       const { userChat } = getValues('chat');
-      // API 호출
       postChat({ chatroomId: currentChatRoomId, category: seletedPrompt?.question as string, chat: userChat });
       setChatList((prev) => {
-        return [...prev, { aiChat: '', userChat }];
+        return [...prev, { aiChat: '', userChat, chatId: 0 }];
       });
       setValue('chat.userChat', '');
     }
@@ -86,7 +82,7 @@ const HomePage = () => {
     if (seletedPrompt?.prompt) {
       postChatStart({ category: seletedPrompt?.question, chat: seletedPrompt?.prompt });
       setChatList((prev) => {
-        return [...prev, { aiChat: '', userChat: seletedPrompt?.chat }];
+        return [...prev, { aiChat: '', userChat: seletedPrompt?.chat, chatId: 0 }];
       });
     }
   }, [seletedPrompt]);
@@ -119,7 +115,7 @@ const HomePage = () => {
                       ) : (
                         <>
                           <ChatBox>{chat?.userChat}</ChatBox>
-                          <ChatBox currentChatId={currentChatId} role={'ai'}>
+                          <ChatBox currentChatId={chat?.chatId} role={'ai'}>
                             {chat?.aiChat}
                           </ChatBox>
                         </>
