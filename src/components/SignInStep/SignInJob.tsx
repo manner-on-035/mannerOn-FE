@@ -6,7 +6,7 @@ interface SignInJobProps {
   setCurrent: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const buttonList = ['직장인', '프리랜서', '학생', '주부', '공무원', '전문직', '자영업', '무직', '아르바이트생'];
+const buttonList = ['직장인', '프리랜서', '공무원', '전문직', '자영업', '아르바이트생'];
 
 const SignInJob: React.FC<SignInJobProps> = ({ current, setCurrent }) => {
   return (
